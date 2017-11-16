@@ -119,8 +119,8 @@ class ManagerRx(object):
 				print(d)
 				#read and process data
 				if len(d) == 6:
-					imu1 = {'yaw' : d[2], 'pitch' : d[0], 'roll' : d[1]}
-					imu2 = {'yaw' : d[5], 'pitch' : d[3], 'roll' : d[4]}
+					imu1 = {'yaw' : d[1], 'pitch' : d[0], 'roll' : d[2]}
+					imu2 = {'yaw' : d[4], 'pitch' : d[3], 'roll' : d[5]}
 					self.data['imu1'] = imu1
 					self.data['imu2'] = imu2
 				
@@ -188,7 +188,7 @@ class ManagerRx(object):
 			 			'imu2' : {'yaw' : (20 * random.random()), 'pitch' : (20 * random.random()),'roll' : (20 * random.random())}
 		 			  }
 
-	
+
 
 	def get_data(self):
 		return self.data	

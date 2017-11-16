@@ -71,6 +71,7 @@ class RobotController(object):
         self.setLanguage('Spanish')
         self.animatedSpeechProxy = self.session.service("ALAnimatedSpeech")
         self.motion = self.session.service("ALMotion")
+        self.posture = self.session.service("ALRobotPosture")
         '''
         self.motion = self.session.service("ALMotion")
         self.motion.wakeUp()
@@ -127,9 +128,11 @@ class RobotController(object):
     def start_session(self):
         self.motion.wakeUp()
         self.tts.say(self.welcomeSentence)
+        #self.posture.goToPosture("StandZero", 1.0)
         
 
-
+    def correct_posture(self):
+        self.tts.say(self.postureCorrectionSentence)
 
     def set_data(self, data):
         self.ecg = data['ecg']
@@ -155,11 +158,18 @@ class RobotController(object):
 def main():
 
 
-    nao = RobotController(ip = '10.30.0.110', useSpanish = True)
+    nao = RobotController(ip = '10.30.0.191', useSpanish = True)
     
     
     nao.set_sentences()
     nao.set_limits()
+
+    
+    nao.start_session()
+
+    nao.shutdown()
+
+
 
     print('x')
 
@@ -169,7 +179,7 @@ def main():
 #    module = nao.module
 
      
-
+'''
     def process(nao):
         go_on = True
         while go_on:
@@ -191,6 +201,6 @@ def main():
     except KeyboardInterrupt:
         nao.go_on = False
 
-
+'''
 if __name__ == '__main__':
     main()

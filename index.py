@@ -19,19 +19,19 @@ import sys
 class LokomatInterface(object):
 
     def __init__(self, settings = {
-                                    'UseSensors': False,
+                                    'UseSensors': True,
                                     'UseRobot'  : True,
                                     'RobotIp'   : "10.30.0.191",
                                     'RobotPort' : 9559
                                   }
-        ):
-        #load settings
-        self.settings = settings
-        #therapy win interface object
         self.therapy_win = interface.MainTherapyWin()
         #conntecting to interface
         self.therapy_win.connectStartButton(self.on_start_clicked)
         self.therapy_win.connectStopButton(self.on_stop_clicked)
+        ):
+        #load settings
+        self.settings = settings
+        #therapy win interface object
 
         if self.settings['UseRobot']:
             self.RobotCaptureThread = RobotCaptureThread(interface = self)
@@ -76,7 +76,7 @@ class LokomatInterface(object):
         if self.settings['UseSensors']:
             
             # set sensors
-            self.ManagerRx.set_sensors(ecg = False, imu = False, joy= False )
+            self.ManagerRx.set_sensors(ecg = False, imu = True, joy= True )
             # threads
             
             #sensor update processes
@@ -213,8 +213,9 @@ class RobotCaptureThread(QtCore.QThread):
         self.interface = interface
         
         
-    def run(self):
         
+    def run(self):
+        self.interface.robotController.posture.goToPosture("StandZero", 1.0)
         while self.ON:
             d = self.interface.ManagerRx.get_data()
             self.interface.robotController.set_data(d)
