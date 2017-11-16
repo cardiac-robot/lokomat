@@ -8,6 +8,10 @@ import ctypes
 class MainTherapyWin(QtGui.QMainWindow):
     onData=QtCore.pyqtSignal()
     onJoy=QtCore.pyqtSignal()
+    onStart = QtCore.pyqtSignal()
+    onStop = QtCore.pyqtSignal()
+    onBorg = QtCore.pyqtSignal()   
+
     def __init__(self):
         super(MainTherapyWin,self).__init__()
         self.init_ui()
@@ -41,7 +45,7 @@ class MainTherapyWin(QtGui.QMainWindow):
         #setting backgroung image
         self.label_background=QtGui.QLabel(self)
         self.label_background.setGeometry(QtCore.QRect(0,0,self.winsize_h,self.winsize_v))
-        self.label_background.setPixmap(QtGui.QPixmap("img/Interfaz.png"))
+        self.label_background.setPixmap(QtGui.QPixmap("gui/img/Interfaz.png"))
         self.label_background.setScaledContents(True)
         #Image=QImage("img/Interfaz.png")
         #sImage=Image.scaled(self.winsize_h,self.winsize_v,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
@@ -193,6 +197,7 @@ class MainTherapyWin(QtGui.QMainWindow):
 
     def onStartClicked(self):
         #function to modify the interface state and visuals
+        self.onStart.emit()
         print('start clicked')
         #lock start button
         self.controlButtons['start'].setEnabled(False)
@@ -220,6 +225,7 @@ class MainTherapyWin(QtGui.QMainWindow):
         self.pitchDisplay1['lcd'].display(self.dataToDisplay['pitch_c'])
         self.rollDisplay1['lcd'].display(self.dataToDisplay['roll_c'])
 
+
     def update_display_data(self,
                             d = {
                                 'hr' : 0,
@@ -228,13 +234,15 @@ class MainTherapyWin(QtGui.QMainWindow):
                                 'roll_t' : 0,
                                 'yaw_c' : 0,
                                 'pitch_c:' : 0,
-                                'roll_c' : 0
+                                'roll_c' : 0,
+                                'borg' : 0
                                 }
                             ):
         self.dataToDisplay =  d
         self.onData.emit()
 
     def onStopClicked(self):
+        self.onStop.emit()
         #function to modify the interface state and visuals
         self.controlButtons['start'].setEnabled(True)
         self.controlButtons['stop'].setEnabled(False)
@@ -246,7 +254,8 @@ class MainTherapyWin(QtGui.QMainWindow):
                                         'roll_t' : 0,
                                         'yaw_c' : 0,
                                         'pitch_c' : 0,
-                                        'roll_c' : 0
+                                        'roll_c' : 0,
+                                        'borg': 0
                                         }
                                         )
         self.Borg.j = 2
@@ -306,6 +315,11 @@ class BorgButton(object):
         elif self.j =='2':
             if self.cursorStatus > 0:
                 self.set_cursor(self.cursorStatus -1)
+        elif self.j == '5':
+            d = self.cursorStatus + 6
+            self.window.BorgDisplay.display(d)
+            self.window.dataToDisplay['borg'] = d
+            self.window.onBorg.emit()   
 
     #def
 

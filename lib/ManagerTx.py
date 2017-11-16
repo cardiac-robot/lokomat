@@ -48,7 +48,8 @@ class ManagerRx(object):
 						'joy'  : 0,
 						'ecg'  : {'hr' : 0},
 			 			'imu1' : {'yaw' : 0, 'pitch' : 0,'roll' : 0},
-			 			'imu2' : {'yaw' : 0, 'pitch' : 0,'roll' : 0}
+			 			'imu2' : {'yaw' : 0, 'pitch' : 0,'roll' : 0},
+			 			'borg' : 0
 		 			  }
 
 	def set_sensors(self, imu = False, joy = False, ecg = False):
@@ -185,7 +186,8 @@ class ManagerRx(object):
 						'joy'  : 0,
 						'ecg'  : {'hr' : (100 * random.random())},
 			 			'imu1' : {'yaw' : (20 * random.random()), 'pitch' : (20* random.random()),'roll' : (20 * random.random())},
-			 			'imu2' : {'yaw' : (20 * random.random()), 'pitch' : (20 * random.random()),'roll' : (20 * random.random())}
+			 			'imu2' : {'yaw' : (20 * random.random()), 'pitch' : (20 * random.random()),'roll' : (20 * random.random())},
+		 			  	'borg' : 0
 		 			  }
 
 

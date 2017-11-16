@@ -51,12 +51,21 @@ class RobotModule(ALModule):
 
 class RobotController(object):
 
-    def __init__(self, name  ="Palin" ,ip = '10.30.0.110', port = 9559, useSpanish = True):
-        self.ip = ip
-        self.port = port
-        self.useSpanish = useSpanish
+    def __init__(self,settings = { 'name'           : "Palin",
+                                   'ip'             : '10.30.0.110',
+                                   'port'           : 9559,
+                                   'UseSpanish'     : True,
+                                   'MotivationTime' : 300000000
+
+                                 }):
+        
+        self.settings = settings
+        self.ip = self.settings['ip']
+        self.port = self.settings['port']
+        self.useSpanish = self.settings['UseSpanish']
+
         self.session = qi.Session()
-        self.robotName = name
+        self.robotName = self.settings['name']
 
         self.go_on = True
         
@@ -111,6 +120,8 @@ class RobotController(object):
         self.hrIsUpSentence = 'Parece que estás empezando a estar cansado,\\pau=400\\ todo está bien?'
         self.headPostureCorrectionSentence = "Mejora la posición de tu cabeza"
         self.torsePostureCorrectionSentence = 'Trata de enderezarte,\\pau=400\\ pon la espalda recta'
+        self.borgAlertSentence   =  "Al parecer estás muy cansado,\\pau=400\\ voy a llamar al doctor!."
+        self.borgRecievedSentence   = "Gracias"
 
         self.motivationSentence = ["Puedes hacerlo!","Que bien lo haces!","Te felicito!","Sigue así!"]
 
@@ -125,14 +136,14 @@ class RobotController(object):
             sys.exit(1)
 
     def set_routines(self):
-        sayHelloCallable = functools.partial(self.get_motivation)
-        self.sayHelloTask = qi.PeriodicTask()
-        self.sayHelloTask.setCallback(sayHelloCallable)
-        self.sayHelloTask.setUsPeriod(4000000)
-        self.sayHelloTask.start(True)
+        sayMotivation = functools.partial(self.get_motivation)
+        self.sayMotivationTask = qi.PeriodicTask()
+        self.sayMotivationTask.setCallback(sayMotivation)
+        self.sayMotivationTask.setUsPeriod(self.settings['MotivationTime'])
+        self.sayMotivationTask.start(True)
 
     def stop_routines(self):
-        self.sayHelloTask.stop()
+        self.sayMotivationTask.stop()
 
     #binding functions to the interface
 
@@ -141,6 +152,12 @@ class RobotController(object):
         self.tts.say(self.welcomeSentence)
         #self.posture.goToPosture("StandZero", 1.0)
         
+    def get_borg(self, d):
+
+        if d > 11:
+            self.tts.say(self.borgAlertSentence)
+        else:
+            self.tts.say(self.borgRecievedSentence)
 
     def ask_hr_high(self):
         self.tts.say(self.hrIsUpSentence)
@@ -168,10 +185,10 @@ class RobotController(object):
         if self.ecg['hr'] > self.hr:
             self.say(self.hrIsUpSentence)
 
-        if self.angles1['pitch'] < -87: 
+        if float(self.angles1['pitch']) > -87: 
             self.correct_torse_posture()
         
-        if self.angles2['pitch'] > -85:
+        if float(self.angles2['pitch']) > -95:
             self.correct_head_posture()
          
     

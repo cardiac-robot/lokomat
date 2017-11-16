@@ -19,8 +19,8 @@ import sys
 class LokomatInterface(object):
 
     def __init__(self, settings = {
-                                    'UseSensors': False,
-                                    'UseRobot'  : False,
+                                    'UseSensors': True,
+                                    'UseRobot'  : True,
                                     'RobotIp'   : "10.30.0.191",
                                     'RobotPort' : 9559
                                   }
@@ -30,6 +30,8 @@ class LokomatInterface(object):
         #conntecting to interface
         self.therapy_win.connectStartButton(self.on_start_clicked)
         self.therapy_win.connectStopButton(self.on_stop_clicked)
+
+
         
         #load settings
         self.settings = settings
@@ -38,11 +40,14 @@ class LokomatInterface(object):
         if self.settings['UseRobot']:
             self.RobotCaptureThread = RobotCaptureThread(interface = self)
 
-            self.robotController = controller.RobotController(
-                                                              name       = "Palin",
-                                                              ip         = self.settings['RobotIp'],
-                                                              port       = self.settings['RobotPort'],
-                                                              useSpanish = True
+            self.robotController = controller.RobotController({
+                                                                 'name'       : "Palin",
+                                                                 'ip'         : self.settings['RobotIp'],
+                                                                 'port'       : self.settings['RobotPort'],
+                                                                 'UseSpanish' : True,
+                                                                 'MotivationTime': 300000000
+                                                              }
+                                                             
                                                               )
 
             self.robotController.set_sentences()
@@ -50,7 +55,10 @@ class LokomatInterface(object):
 
 
             self.therapy_win.onStart.connect(self.robotController.start_session)
+            self.therapy_win.onStart.connect(self.robotController.set_routines)
+            self.therapy_win.onStop.connect(self.robotController.stop_routines)     
             self.therapy_win.onStop.connect(self.robotController.shutdown)
+            self.therapy_win.onBorg.connect(self.send_borg_to_robot)
 
         #creating Joy object
         #self.Joy = Joy.JoyHandler(sample = 0.3, gui = self.therapy_win)
@@ -78,7 +86,7 @@ class LokomatInterface(object):
         if self.settings['UseSensors']:
             
             # set sensors
-            self.ManagerRx.set_sensors(ecg = False, imu = True, joy= True )
+            self.ManagerRx.set_sensors(ecg = False, imu = True , joy= True )
             # threads
             
             #sensor update processes
@@ -106,6 +114,7 @@ class LokomatInterface(object):
 
         if self.settings['UseRobot']:
             self.RobotCaptureThread.start()
+
             
             #self.manager.launch_sensors()
             #self.manager.play_sensors()
@@ -125,6 +134,14 @@ class LokomatInterface(object):
             #self.manager.shutdown()
             #self.SensorUpdateThread.shutdown()
             #self.NaoThread.stop()
+
+
+
+    def send_borg_to_robot(self):
+        print("SEND BORG")
+        d = self.therapy_win.Borg.cursorStatus + 6  
+        self.robotController.get_borg(d)
+
 
     #bind functions to the sensor data manager
 
@@ -208,7 +225,7 @@ class JoyCaptureThread(QtCore.QThread):
 
 
 class RobotCaptureThread(QtCore.QThread):
-    def __init__(self, parent = None, sample = 5, interface = None):
+    def __init__(self, parent = None, sample = 30, interface = None):
         super(RobotCaptureThread,self).__init__()
         self.Ts = sample
         self.ON = True
@@ -217,7 +234,7 @@ class RobotCaptureThread(QtCore.QThread):
         
         
     def run(self):
-        self.interface.robotController.posture.goToPosture("StandZero", 1.0)
+        #self.interface.robotController.posture.goToPosture("StandZero", 1.0)
         while self.ON:
             d = self.interface.ManagerRx.get_data()
             self.interface.robotController.set_data(d)
