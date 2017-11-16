@@ -9,6 +9,7 @@ import logging
 import time
 import random
 import threading
+import functools
 
 class RobotModule(ALModule):
     def __init__(self, name):
@@ -106,10 +107,12 @@ class RobotController(object):
 
     def set_sentences(self):
         self.welcomeSentence = "Hola, \\pau=400\\ mi nombre es " + self.robotName + ". \\pau=500\\ Te estaré acompañando en la sesión. \\pau=500\\ Estoy aquí para cuidar tus signos y ayudarte a mejorar en tu rehabilitación."
-        self.hrIsUpSentence = 'Parece que estás empezando a estar cansado,\\pau=400\\ todo está bien?'
-        self.postureCorrectionSentence = 'Trata de enderezarte,\\pau=400\\ pon la espalda recta'
         self.sayGoodBye = "Fue un placer acompañarte durante la sessión.\\pau=400\\ Nos vemos la próxima ocasión. "
+        self.hrIsUpSentence = 'Parece que estás empezando a estar cansado,\\pau=400\\ todo está bien?'
+        self.headPostureCorrectionSentence = "Mejora la posición de tu cabeza"
+        self.torsePostureCorrectionSentence = 'Trata de enderezarte,\\pau=400\\ pon la espalda recta'
 
+        self.motivationSentence = ["Puedes hacerlo!","Que bien lo haces!","Te felicito!","Sigue así!"]
 
     def connect_to_robot(self):
 
@@ -121,7 +124,15 @@ class RobotController(object):
                           "Please check your script arguments. Run with -h option for help.")
             sys.exit(1)
 
+    def set_routines(self):
+        sayHelloCallable = functools.partial(self.get_motivation)
+        self.sayHelloTask = qi.PeriodicTask()
+        self.sayHelloTask.setCallback(sayHelloCallable)
+        self.sayHelloTask.setUsPeriod(4000000)
+        self.sayHelloTask.start(True)
 
+    def stop_routines(self):
+        self.sayHelloTask.stop()
 
     #binding functions to the interface
 
@@ -131,8 +142,22 @@ class RobotController(object):
         #self.posture.goToPosture("StandZero", 1.0)
         
 
-    def correct_posture(self):
-        self.tts.say(self.postureCorrectionSentence)
+    def ask_hr_high(self):
+        self.tts.say(self.hrIsUpSentence)
+
+
+    def get_motivation(self):
+        i = random.randint(0, len(self.motivationSentence) - 1)
+        
+        self.tts.say(self.motivationSentence[i])
+
+
+    def correct_torse_posture(self):
+        self.tts.say(self.torsePostureCorrectionSentence)
+
+    def correct_head_posture(self):
+        self.tts.say(self.headPostureCorrectionSentence)
+
 
     def set_data(self, data):
         self.ecg = data['ecg']
@@ -143,10 +168,12 @@ class RobotController(object):
         if self.ecg['hr'] > self.hr:
             self.say(self.hrIsUpSentence)
 
-        if self.angles1['yaw'] < 90:
-            self.say(self.postureCorrectionSentence)
-
+        if self.angles1['pitch'] < -87: 
+            self.correct_torse_posture()
         
+        if self.angles2['pitch'] > -85:
+            self.correct_head_posture()
+         
     
     def shutdown(self):
         self.tts.say(self.sayGoodBye)
@@ -164,9 +191,17 @@ def main():
     nao.set_sentences()
     nao.set_limits()
 
-    
+
+    t =threading.Thread(target = nao.correct_torse_posture)
+
     nao.start_session()
 
+    #nao.correct_head_posture()
+    nao.set_routines()
+    #t.start()
+    time.sleep(25)
+    #nao.correct_torse_posture()
+    nao.stop_routines()
     nao.shutdown()
 
 

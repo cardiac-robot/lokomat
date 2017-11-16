@@ -39,11 +39,17 @@ class MainTherapyWin(QtGui.QMainWindow):
         #self.setGeometry(100,100,1000,580)#Tamaño de la ventana
         
         #setting backgroung image
-        Image=QImage("img/Interfaz.png")
+        '''
+        Image=QImage("gui/img/Interfaz.png")
         sImage=Image.scaled(self.winsize_h,self.winsize_v,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         palette=QtGui.QPalette()
         palette.setBrush(10, QBrush(sImage))
         self.setPalette(palette)
+        '''
+        self.label_background = QtGui.QLabel(self)
+        self.label_background.setGeometry(QtCore.QRect(0,0,self.winsize_h,self.winsize_v))
+        self.label_background.setPixmap(QtGui.QPixmap("gui/img/Interfaz.png"))
+        self.label_background.setScaledContents(True)
         #----------------------------------
         #-----------Labels config----------
         #Heart rate:
@@ -296,6 +302,8 @@ class BorgButton(object):
         elif self.j =='2':
             if self.cursorStatus > 0:
                 self.set_cursor(self.cursorStatus -1)
+        elif self.j == '5':
+            self.cursorStatus
 
     #def
 

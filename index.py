@@ -19,16 +19,18 @@ import sys
 class LokomatInterface(object):
 
     def __init__(self, settings = {
-                                    'UseSensors': True,
-                                    'UseRobot'  : True,
+                                    'UseSensors': False,
+                                    'UseRobot'  : False,
                                     'RobotIp'   : "10.30.0.191",
                                     'RobotPort' : 9559
                                   }
+
+                                    ):
         self.therapy_win = interface.MainTherapyWin()
         #conntecting to interface
         self.therapy_win.connectStartButton(self.on_start_clicked)
         self.therapy_win.connectStopButton(self.on_stop_clicked)
-        ):
+        
         #load settings
         self.settings = settings
         #therapy win interface object
