@@ -19,8 +19,8 @@ import sys
 class LokomatInterface(object):
 
     def __init__(self, settings = {
-                                    'UseSensors': True,
-                                    'UseRobot'  : False,
+                                    'UseSensors': False,
+                                    'UseRobot'  : True,
                                     'RobotIp'   : "10.30.0.191",
                                     'RobotPort' : 9559
                                   }
@@ -32,6 +32,24 @@ class LokomatInterface(object):
         #conntecting to interface
         self.therapy_win.connectStartButton(self.on_start_clicked)
         self.therapy_win.connectStopButton(self.on_stop_clicked)
+
+        if self.settings['UseRobot']:
+            self.RobotCaptureThread = RobotCaptureThread(interface = self)
+
+            self.robotController = controller.RobotController(
+                                                              name       = "Palin",
+                                                              ip         = self.settings['RobotIp'],
+                                                              port       = self.settings['RobotPort'],
+                                                              useSpanish = True
+                                                              )
+
+            self.robotController.set_sentences()
+            self.robotController.set_limits()
+
+
+            self.therapy_win.onStart.connect(self.robotController.start_session)
+            self.therapy_win.onStop.connect(self.robotController.shutdown)
+
         #creating Joy object
         #self.Joy = Joy.JoyHandler(sample = 0.3, gui = self.therapy_win)
         #create robot controller
@@ -40,23 +58,27 @@ class LokomatInterface(object):
         self.RobotController.set_limits()
         self.NaoThread = RobotCaptureThread(self)
         '''
+
+        # display data update data 
+        self.SensorUpdateThread = SensorUpdateThread(f = self.sensor_update, sample = 1)
+        
+        #create sensor Manager
+        self.ManagerRx  = ManagerTx.ManagerRx(settings = {
+                            'joy_port'  : 'COM9',
+                            'imu_port'  : 'COM4',
+                            'ecg_port'  : 'COM6',
+                            'joy_sample': 0.2,
+                            'imu_sample': 1,
+                            'joy_baud'  : 9600,
+                            'imu_baud'  : 9600,
+                            'ecg_sample': 1
+                          })
         if self.settings['UseSensors']:
-            #create sensor Manager
-            self.ManagerRx  = ManagerTx.ManagerRx(settings = {
-                                'joy_port'  : 'COM9',
-                                'imu_port'  : 'COM4',
-                                'ecg_port'  : 'COM6',
-                                'joy_sample': 0.2,
-                                'imu_sample': 1,
-                                'joy_baud'  : 9600,
-                                'imu_baud'  : 9600,
-                                'ecg_sample': 1
-                              })
+            
             # set sensors
-            self.ManagerRx.set_sensors(ecg = False, imu = True, joy= True )
+            self.ManagerRx.set_sensors(ecg = False, imu = False, joy= False )
             # threads
-            # display data update data 
-            self.SensorUpdateThread = SensorUpdateThread(f = self.sensor_update, sample = 1)
+            
             #sensor update processes
             self.ImuCaptureThread   = ImuCaptureThread(interface = self)
             self.JoyCaptureThread   = JoyCaptureThread(interface = self)
@@ -72,25 +94,32 @@ class LokomatInterface(object):
 
     def on_start_clicked(self):
         print('started from index')
-        self.JoyCaptureThread.start()
+        #self.therapy_win.onStart.emit()        
         #self.Joy.launch_thread()
+        self.SensorUpdateThread.start()
         if self.settings['UseSensors']:
             print('sensors')
             self.ImuCaptureThread.start()
-            self.SensorUpdateThread.start()
+            self.JoyCaptureThread.start()
+
+        if self.settings['UseRobot']:
+            self.RobotCaptureThread.start()
+            
             #self.manager.launch_sensors()
             #self.manager.play_sensors()
             #self.SensorUpdateThread.start()
             #self.NaoThread.start()
 
     def on_stop_clicked(self):
+        self.shutdown()
         print('stopped from index')
-        self.JoyCaptureThread.shutdown()
         if self.settings['UseSensors']:
             print('sensors')
             self.ManagerRx.shutdown()
 
-        self.shutdown()
+        if self.settings['UseRobot']:
+            self.RobotCaptureThread.shutdown()
+        
             #self.manager.shutdown()
             #self.SensorUpdateThread.shutdown()
             #self.NaoThread.stop()
@@ -126,12 +155,23 @@ class LokomatInterface(object):
                                     )
         else:
             print('no sensors')
-
+            self.ManagerRx.simulate_data()
+            data = self.ManagerRx.get_data()
+            self.therapy_win.update_display_data(d = {
+                                                        'hr' : data['ecg']['hr'],
+                                                        'yaw_t' : data['imu1']['yaw'],
+                                                        'pitch_t' : data['imu1']['pitch'],
+                                                        'roll_t' : data['imu1']['roll'],
+                                                        'yaw_c' : data['imu2']['yaw'],
+                                                        'pitch_c' : data['imu2']['pitch'],
+                                                        'roll_c' : data['imu2']['roll']
+                                                      })
 
 
     def shutdown(self):
+        self.SensorUpdateThread.shutdown()
         if self.settings['UseSensors']:
-            self.SensorUpdateThread.shutdown()
+            
             #sensor update processes
             self.ImuCaptureThread.shutdown()
             self.JoyCaptureThread.shutdown()
@@ -165,8 +205,8 @@ class JoyCaptureThread(QtCore.QThread):
 
 
 
-class RobotCatureThread(QtCore.QThread):
-    def __init__(self, parent = None, sample = 1, interface = None):
+class RobotCaptureThread(QtCore.QThread):
+    def __init__(self, parent = None, sample = 5, interface = None):
         super(RobotCaptureThread,self).__init__()
         self.Ts = sample
         self.ON = True
@@ -176,8 +216,8 @@ class RobotCatureThread(QtCore.QThread):
     def run(self):
         
         while self.ON:
-            d = self.interface.manager.get_data()
-            self.interface.RobotController.get_data(d)
+            d = self.interface.ManagerRx.get_data()
+            self.interface.robotController.set_data(d)
             time.sleep(self.Ts)
             
                 

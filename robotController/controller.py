@@ -50,17 +50,17 @@ class RobotModule(ALModule):
 
 class RobotController(object):
 
-    def __init__(self, ip = '10.30.0.110', port = 9559, useSpanish = True):
+    def __init__(self, name  ="Palin" ,ip = '10.30.0.110', port = 9559, useSpanish = True):
         self.ip = ip
         self.port = port
         self.useSpanish = useSpanish
         self.session = qi.Session()
-        
+        self.robotName = name
 
         self.go_on = True
         
         print('b')
-        myBroker = ALBroker("myBroker", "0.0.0.0", 0, self.ip, self.port)
+        #myBroker = ALBroker("myBroker", "0.0.0.0", 0, self.ip, self.port)
         #self.module = RobotModule( name = 'module')
 
         self.session.connect("tcp://" + self.ip + ":" + str(self.port))
@@ -70,6 +70,7 @@ class RobotController(object):
         self.tts = self.session.service("ALTextToSpeech")
         self.setLanguage('Spanish')
         self.animatedSpeechProxy = self.session.service("ALAnimatedSpeech")
+        self.motion = self.session.service("ALMotion")
         '''
         self.motion = self.session.service("ALMotion")
         self.motion.wakeUp()
@@ -100,12 +101,13 @@ class RobotController(object):
 
 
     def set_limits(self):
-        self.hr = 130
+        self.hr = 50
 
     def set_sentences(self):
-        self.welcomeSentence = "Hola, \\pau=400\\ mi nombre es Nano. \\pau=500\\ Te estaré acompañando en sesión. \\pau=500\\ Estoy aquí para cuidar tus signos y ayudarte a mejorar en tu rehabilitación."
+        self.welcomeSentence = "Hola, \\pau=400\\ mi nombre es " + self.robotName + ". \\pau=500\\ Te estaré acompañando en la sesión. \\pau=500\\ Estoy aquí para cuidar tus signos y ayudarte a mejorar en tu rehabilitación."
         self.hrIsUpSentence = 'Parece que estás empezando a estar cansado,\\pau=400\\ todo está bien?'
         self.postureCorrectionSentence = 'Trata de enderezarte,\\pau=400\\ pon la espalda recta'
+        self.sayGoodBye = "Fue un placer acompañarte durante la sessión.\\pau=400\\ Nos vemos la próxima ocasión. "
 
 
     def connect_to_robot(self):
@@ -118,7 +120,18 @@ class RobotController(object):
                           "Please check your script arguments. Run with -h option for help.")
             sys.exit(1)
 
-    def get_data(self, data):
+
+
+    #binding functions to the interface
+
+    def start_session(self):
+        self.motion.wakeUp()
+        self.tts.say(self.welcomeSentence)
+        
+
+
+
+    def set_data(self, data):
         self.ecg = data['ecg']
         self.angles1 = data['imu1']
         self.angles2 = data['imu2']
@@ -132,7 +145,10 @@ class RobotController(object):
 
         
     
-
+    def shutdown(self):
+        self.tts.say(self.sayGoodBye)
+        if self.motion.robotIsWakeUp():
+            self.motion.rest()
 
 
 

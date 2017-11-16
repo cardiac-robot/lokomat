@@ -3,6 +3,7 @@ print('enter')
 
 import os
 import time
+import random
 
 if __name__== "__main__":
     import ecg_sensor as ECG
@@ -178,26 +179,16 @@ class ManagerRx(object):
 			print('going out...joy thread')
 			
 
-	'''
-	def imu_thread(self):
-		
-		while self.IMU_ON:
-		
-			s = self.imuSerial.read()
-			print(s)
-			d = s.split(',')
+	def simulate_data(self):
 
-			if d.len() == 6:
-				imu1 = {'yaw' : d[0], 'pitch' : d[1], 'roll' : d[2]}
-				imu2 = {'yaw' : d[3], 'pitch' : d[4], 'roll' : d[5]}
-				self.data['imu1'] = imu1
-				self.data['imu2'] = imu2
-			
-			else:
-				continue	
-			
-			time.sleep(self.settings['imu_sample'])
-	'''		
+		self.data   = {
+						'joy'  : 0,
+						'ecg'  : {'hr' : (100 * random.random())},
+			 			'imu1' : {'yaw' : (20 * random.random()), 'pitch' : (20* random.random()),'roll' : (20 * random.random())},
+			 			'imu2' : {'yaw' : (20 * random.random()), 'pitch' : (20 * random.random()),'roll' : (20 * random.random())}
+		 			  }
+
+	
 
 	def get_data(self):
 		return self.data	
@@ -227,9 +218,8 @@ class ManagerRx(object):
 
 
 	def joy_shutdown(self):
-		if self.joySerial.is_open:
-			self.joySerial.write("C")
-			
+		if self.joySerial and self.joySerial.is_open:
+			self.joySerial.write("C")			
 
 		self.JOY_ON = False
 

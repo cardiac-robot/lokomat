@@ -5,8 +5,10 @@ from PyQt4.QtCore import*
 from PyQt4.QtGui import*
 
 class MainTherapyWin(QtGui.QMainWindow):
-    onData=QtCore.pyqtSignal()
-    onJoy=QtCore.pyqtSignal()
+    onData  = QtCore.pyqtSignal()
+    onJoy   = QtCore.pyqtSignal()
+    onStart = QtCore.pyqtSignal()
+    onStop  = QtCore.pyqtSignal()
     def __init__(self):
         super(MainTherapyWin,self).__init__()
         self.init_ui()
@@ -181,6 +183,7 @@ class MainTherapyWin(QtGui.QMainWindow):
                                 )
         self.Borg.j = 4
         self.Borg.move()
+        self.onStart.emit()
 
     def display_data(self):
 
@@ -223,6 +226,7 @@ class MainTherapyWin(QtGui.QMainWindow):
                                         )
         self.Borg.j = 2
         self.Borg.move()
+        self.onStop.emit()
 
 #Borg Button object
 class BorgButton(object):
