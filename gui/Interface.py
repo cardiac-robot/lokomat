@@ -39,7 +39,7 @@ class MainTherapyWin(QtGui.QMainWindow):
         #self.setGeometry(100,100,1000,580)#Tamaño de la ventana
         
         #setting backgroung image
-        Image=QImage("img/Int.jpg")
+        Image=QImage("img/Interfaz.png")
         sImage=Image.scaled(self.winsize_h,self.winsize_v,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         palette=QtGui.QPalette()
         palette.setBrush(10, QBrush(sImage))
@@ -51,7 +51,7 @@ class MainTherapyWin(QtGui.QMainWindow):
         #heart rate lcd
         self.hrDisplay['lcd'] = QtGui.QLCDNumber(self)
         #self.hrDisplay['lcd'].setGeometry(QtCore.QRect(120,95, 120,30))
-        self.hrDisplay['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.12,self.winsize_v*0.18,self.winsize_h*0.12 ,self.winsize_h*0.04))
+        self.hrDisplay['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.165,self.winsize_v*0.19,self.winsize_h*0.12 ,self.winsize_h*0.04))
         #Yaw angle:
         self.yawDisplay = {}
         #yaw angle label
@@ -59,35 +59,35 @@ class MainTherapyWin(QtGui.QMainWindow):
         self.yawDisplay['name'].setText("Yaw")
         self.yawDisplay['name'].setStyleSheet("font-size:18px; Arial")
         #self.yawDisplay['name'].setGeometry(120,125, 100,50)
-        self.yawDisplay['name'].setGeometry(QtCore.QRect(self.winsize_h*0.1,self.winsize_v*0.2,self.winsize_h*0.12 ,self.winsize_h*0.1))
+        self.yawDisplay['name'].setGeometry(QtCore.QRect(self.winsize_h*0.18,self.winsize_v*0.2,self.winsize_h*0.12 ,self.winsize_h*0.1))
         #yaw lcd
         self.yawDisplay['lcd'] = QtGui.QLCDNumber(self)
         #self.yawDisplay['lcd'].setGeometry(100,165, 50,30)
-        self.yawDisplay['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.09,self.winsize_v*0.31,self.winsize_h*0.055 ,self.winsize_h*0.04))
+        self.yawDisplay['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.16,self.winsize_v*0.31,self.winsize_h*0.055 ,self.winsize_h*0.04))
         #pitch angle:
         self.pitchDisplay = {}
         #pitch angle label
         self.pitchDisplay['name'] = QtGui.QLabel(self)
         self.pitchDisplay['name'].setText("Pitch")
         self.pitchDisplay['name'].setStyleSheet("font-size:18px; Arial")
-        self.pitchDisplay['name'].setGeometry(QtCore.QRect(self.winsize_h*0.16,self.winsize_v*0.2,self.winsize_h*0.12 ,self.winsize_h*0.1))
+        self.pitchDisplay['name'].setGeometry(QtCore.QRect(self.winsize_h*0.24,self.winsize_v*0.2,self.winsize_h*0.12 ,self.winsize_h*0.1))
         #pitch lcd
         self.pitchDisplay['lcd'] = QtGui.QLCDNumber(self)
-        self.pitchDisplay['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.15,self.winsize_v*0.31,self.winsize_h*0.055 ,self.winsize_h*0.04))
+        self.pitchDisplay['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.22,self.winsize_v*0.31,self.winsize_h*0.055 ,self.winsize_h*0.04))
         #roll angle:
         self.rollDisplay = {}
         #roll angle label
         self.rollDisplay['name'] = QtGui.QLabel(self)
         self.rollDisplay['name'].setText("Roll")
         self.rollDisplay['name'].setStyleSheet("font-size:18px; Arial")
-        self.rollDisplay['name'].setGeometry(QtCore.QRect(self.winsize_h*0.22,self.winsize_v*0.2,self.winsize_h*0.12 ,self.winsize_h*0.1))
+        self.rollDisplay['name'].setGeometry(QtCore.QRect(self.winsize_h*0.30,self.winsize_v*0.2,self.winsize_h*0.12 ,self.winsize_h*0.1))
         #roll lcd
         self.rollDisplay['lcd'] = QtGui.QLCDNumber(self)
-        self.rollDisplay['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.21,self.winsize_v*0.31,self.winsize_h*0.055 ,self.winsize_h*0.04))
+        self.rollDisplay['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.28,self.winsize_v*0.31,self.winsize_h*0.055 ,self.winsize_h*0.04))
         #Therapy time lcd
         self.TtimeDisplay = {}
         self.TtimeDisplay['lcd'] = QtGui.QLCDNumber(self)
-        self.TtimeDisplay['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.86,self.winsize_v*0.09,self.winsize_h*0.12 ,self.winsize_h*0.04))
+        self.TtimeDisplay['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.86,self.winsize_v*0.14,self.winsize_h*0.12 ,self.winsize_h*0.04))
      
         #a =300
         #Yaw angle:
@@ -95,18 +95,18 @@ class MainTherapyWin(QtGui.QMainWindow):
 
         #yaw lcd
         self.yawDisplay1['lcd'] = QtGui.QLCDNumber(self)
-        self.yawDisplay1['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.09,self.winsize_v*0.41,self.winsize_h*0.055 ,self.winsize_h*0.04))
+        self.yawDisplay1['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.16,self.winsize_v*0.42,self.winsize_h*0.055 ,self.winsize_h*0.04))
         #pitch angle:
         self.pitchDisplay1 = {}
         #pitch lcd
         self.pitchDisplay1['lcd'] = QtGui.QLCDNumber(self)
-        self.pitchDisplay1['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.15,self.winsize_v*0.41,self.winsize_h*0.055 ,self.winsize_h*0.04))
+        self.pitchDisplay1['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.22,self.winsize_v*0.42,self.winsize_h*0.055 ,self.winsize_h*0.04))
         #roll angle:
         self.rollDisplay1 = {}
 
         #roll lcd
         self.rollDisplay1['lcd'] = QtGui.QLCDNumber(self)
-        self.rollDisplay1['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.21,self.winsize_v*0.41,self.winsize_h*0.055 ,self.winsize_h*0.04))
+        self.rollDisplay1['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.28,self.winsize_v*0.42,self.winsize_h*0.055 ,self.winsize_h*0.04))
 
 
 
@@ -116,30 +116,38 @@ class MainTherapyWin(QtGui.QMainWindow):
         #setting background start image
         
         self.start=QtGui.QLabel(self)
-        self.start.setGeometry(QtCore.QRect(self.winsize_h*0.86,self.winsize_v*0.35,self.winsize_h*0.055 ,self.winsize_h*0.055))
-        Icon3=QtGui.QPixmap("img/play.png")
+        self.start.setGeometry(QtCore.QRect(self.winsize_h*0.87,self.winsize_v*0.35,self.winsize_h*0.055 ,self.winsize_h*0.055))
+        Icon3=QtGui.QPixmap("gui/img/play3.png")
         Icon_resize3= Icon3.scaled(self.winsize_h*0.055 ,self.winsize_h*0.055,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.start.setPixmap(Icon_resize3)
         
         #setting background stop image
         
         self.stop=QtGui.QLabel(self)
-        self.stop.setGeometry(QtCore.QRect(self.winsize_h*0.86,self.winsize_v*0.46,self.winsize_h*0.055 ,self.winsize_h*0.055))
-        Icon4=QtGui.QPixmap("img/stop.png")
+        self.stop.setGeometry(QtCore.QRect(self.winsize_h*0.87,self.winsize_v*0.48,self.winsize_h*0.055 ,self.winsize_h*0.055))
+        Icon4=QtGui.QPixmap("gui/img/stop1.png")
         Icon_resize5= Icon4.scaled(self.winsize_h*0.055 ,self.winsize_h*0.055,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.stop.setPixmap(Icon_resize5)
+        
+
         
         self.controlButtons = {}
         #start button
         self.controlButtons['start'] = QtGui.QCommandLinkButton(self)
         self.controlButtons['start'].setIconSize(QSize(0,0))
-        self.controlButtons['start'].setGeometry(QtCore.QRect(self.winsize_h*0.86,self.winsize_v*0.35,self.winsize_h*0.055 ,self.winsize_h*0.055))
+        self.controlButtons['start'].setGeometry(QtCore.QRect(self.winsize_h*0.87,self.winsize_v*0.35,self.winsize_h*0.055 ,self.winsize_h*0.055))
         
         
         self.controlButtons['stop'] = QtGui.QCommandLinkButton(self)
-        self.controlButtons['stop'].setGeometry(QtCore.QRect(self.winsize_h*0.86,self.winsize_v*0.46,self.winsize_h*0.055 ,self.winsize_h*0.055))
+        self.controlButtons['stop'].setGeometry(QtCore.QRect(self.winsize_h*0.87,self.winsize_v*0.48,self.winsize_h*0.055 ,self.winsize_h*0.055))
         self.controlButtons['stop'].setIconSize(QSize(0,0))
         #self.controlButtons['stop'].setEnabled(False)
+
+        self.controlButtons['close'] = QtGui.QCommandLinkButton(self)
+        self.controlButtons['close'].setGeometry(QtCore.QRect(self.winsize_h*0.943,self.winsize_v*0.02,self.winsize_h*0.038 ,self.winsize_h*0.038))
+        self.controlButtons['close'].setIconSize(QSize(0,0))
+
+        
         #----------------------------------
         #
         #self.LabelPosture=QtWidgets.QLabel(self)
@@ -242,9 +250,9 @@ class BorgButton(object):
         self.j = None
         #setting background Label Borgº
         self.Labelborg=QtGui.QLabel(self.window)
-        self.Labelborg.setGeometry(QtCore.QRect(self.window.winsize_h*0.05,self.window.winsize_v*0.76,self.window.winsize_h*0.7 ,self.window.winsize_h*0.06))
-        Icon2=QtGui.QPixmap("img/borgh")
-        Icon_resize= Icon2.scaled(self.window.winsize_h*0.7 ,self.window.winsize_h*0.05,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
+        self.Labelborg.setGeometry(QtCore.QRect(self.window.winsize_h*0.05,self.window.winsize_v*0.81,self.window.winsize_h*0.7 ,self.window.winsize_h*0.05))
+        Icon2=QtGui.QPixmap("gui/img/borgh")
+        Icon_resize= Icon2.scaled(self.window.winsize_h*0.7 ,self.window.winsize_h*0.045,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.Labelborg.setPixmap(Icon_resize)
         self.Labelborg.setScaledContents(True)
 
@@ -256,9 +264,9 @@ class BorgButton(object):
         offset = 1
         ep = self.window.winsize_h*0.046
         xp = self.window.winsize_h*0.054
-        yp = self.window.winsize_v*0.769
-        hp = self.window.winsize_h*0.043
-        wp = self.window.winsize_h*0.043
+        yp = self.window.winsize_v*0.82
+        hp = self.window.winsize_h*0.042
+        wp = self.window.winsize_h*0.042
         x = xp
         e = ep
         y = yp
@@ -266,7 +274,7 @@ class BorgButton(object):
         w = wp
         for i in range(15):
             self.Borg.append(QtGui.QLabel(self.window))
-            Icon2=QtGui.QPixmap("img/l" + str(i))
+            Icon2=QtGui.QPixmap("gui/img/l" + str(i))
             Icon_resize= Icon2.scaled(h,w,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
             self.Borg[-1].setPixmap(Icon_resize)
             self.Borg[-1].setGeometry(x,y,h,w)
@@ -298,14 +306,14 @@ class BorgButton(object):
     def unlock_buttons(self):
         print('unlock borg buttons')
 
-def main():
-    app=QtGui.QApplication(sys.argv)
-    GUI=MainTherapyWin()
-    sys.exit(app.exec_())
-A=main()
-
-##if __name__ == '__main__':
+#def main():
     #app=QtGui.QApplication(sys.argv)
     #GUI=MainTherapyWin()
     #sys.exit(app.exec_())
+#A=main()
+
+if __name__ == '__main__':
+    app=QtGui.QApplication(sys.argv)
+    GUI=MainTherapyWin()
+    sys.exit(app.exec_())
 
