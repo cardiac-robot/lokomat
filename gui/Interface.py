@@ -161,24 +161,23 @@ class MainTherapyWin(QtGui.QMainWindow):
         self.BorgDisplay.setGeometry(QtCore.QRect(self.winsize_h*0.18,self.winsize_v*0.52,self.winsize_h*0.055 ,self.winsize_h*0.04))
 
 
-        
-        #----------------------------------
+	#----Posture image label
         #
-        #self.LabelPosture=QtWidgets.QLabel(self)
-        #self.LabelPosture.setGeometry(760,60,220,440)
-        #self.LabelPosture.setPixmap(QtGui.QPixmap('gui/img/cervical'))
-        #
-    
-        #self.Stop.setIconSize(QSize(800,500))
-        #self.LabelPosture1=QtWidgets.QLabel(self)
-        #self.LabelPosture1.setGeometry(340,100,400,300)
-        #self.LabelPosture1.setPixmap(QtGui.QPixmap('gui/img/cervical'))
+        self.LabelPosture=QtGui.QLabel(self)
+        self.LabelPosture.setGeometry(QtCore.QRect(self.winsize_h*0.54,self.winsize_v*0.15,self.winsize_h*0.2 ,self.winsize_h*0.25))
+        self.LabelPosture.setPixmap(QtGui.QPixmap('img/cervical'))
 
         #create borgscale button
         self.Borg = BorgButton(self)
 
         self.show()
 
+    def set_correctPostureImage(self):
+        self.LabelPosture.setPixmap(QtGui.QPixmap('img/Goodposture'))
+    def set_badCervicalPostureImage(self):
+        self.LabelPosture.setPixmap(QtGui.QPixmap('img/Bad posture'))
+    def set_badCervicalPostureImage(self):
+        self.LabelPosture.setPixmap(QtGui.QPixmap('img/BadPostureT'))
 
     def set_signals(self):
         self.controlButtons['start'].clicked.connect(self.onStartClicked)
