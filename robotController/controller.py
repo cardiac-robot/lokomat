@@ -185,10 +185,10 @@ class RobotController(object):
         if self.ecg['hr'] > self.hr:
             self.say(self.hrIsUpSentence)
 
-        if float(self.angles1['pitch']) > -87: 
+        if float(self.angles2['pitch']) > -70: 
             self.correct_torse_posture()
         
-        if float(self.angles2['pitch']) > -95:
+        if float(self.angles1['pitch']) > -70:
             self.correct_head_posture()
          
     

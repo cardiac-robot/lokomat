@@ -21,7 +21,7 @@ class LokomatInterface(object):
     def __init__(self, settings = {
                                     'UseSensors': True,
                                     'UseRobot'  : True,
-                                    'RobotIp'   : "10.30.0.191",
+                                    'RobotIp'   : "172.16.106.142",
                                     'RobotPort' : 9559
                                   }
 
@@ -225,7 +225,7 @@ class JoyCaptureThread(QtCore.QThread):
 
 
 class RobotCaptureThread(QtCore.QThread):
-    def __init__(self, parent = None, sample = 30, interface = None):
+    def __init__(self, parent = None, sample = 10, interface = None):
         super(RobotCaptureThread,self).__init__()
         self.Ts = sample
         self.ON = True
