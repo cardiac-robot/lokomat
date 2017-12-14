@@ -114,6 +114,16 @@ class MainMenuWin(QtGui.QMainWindow):
         
         self.show()
 
+    #------------------------------------SIGNAL METHODS------------------------------------------------------------------------------
+    def connectStartButton(self,f):
+        self.controlButtons['start'].clicked.connect(f)
+    def connectStopButton(self, f):
+        self.controlButtons['stop'].clicked.connect(f)
+    def connectNewRegisterButton(self, f):
+        self.controlButtons['newregister'].clicked.connect(f)
+        
+        
+
 #def main():
     #app=QtGui.QApplication(sys.argv)
     #GUI=MainMenuWin()
