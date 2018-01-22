@@ -1,0 +1,3493 @@
+(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+I0
+sS'roll'
+p6
+I0
+sS'pitch'
+p7
+I0
+ssS'heart_rate'
+p8
+I93
+sS'imu_torso'
+p9
+(dp10
+g5
+I0
+sg6
+I0
+sg7
+I0
+ssS'steplength'
+p11
+g2
+sS'timestamp'
+p12
+cdatetime
+datetime
+p13
+(S'\x07\xe1\x0c\x13\x00+\x00\x02\x88p'
+p14
+tp15
+Rp16
+sS'speed'
+p17
+g2
+sS'cadence'
+p18
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I94
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x01\x03z\xa0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x02\x04\xb3 '
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I96
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x03\x05\xbc\xc0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I96
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x04\x06\xbe\x90'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I96
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x05\x08\x06\xb0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I97
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x06\tq\xf8'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I97
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x07\n{\x98'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I97
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x08\x0b\x90\xf0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I97
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-47.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\t\r6\xd0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I96
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\n\x0eH@'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I96
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S"\x07\xe1\x0c\x13\x00+\x0c\x00'\x10"
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\r\x01\x82\xb8'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x0e\x02\x98\x10'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-47.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x0f\x03\xe8\x00'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x10\x04\xe2\x00'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x11\x05\xef\x88'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x12\x07^\xb8'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x13\x08\xe1p'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x14\t\xfa\xb0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-47.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x15\x0b\x04P'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-47.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x16\x0c\x87\x08'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x17\r\xd6\xf8'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5625 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x18\x0e\xe8h'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x1a\x00\xfa\x00'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x1b\x01\xfb\xd0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I95
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x1c\x03\x8a@'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I94
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x1d\x04\xabP'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I92
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x1e\x05\x9d\x80'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I91
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+\x1f\x07O\x18'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I90
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+ \x07nX'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I89
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+!\x08\x978'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I88
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+"\x0e\xf4 '
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I88
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+#\n\xc5\xd0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I88
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+$\x0c_\xf8'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I89
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+%\rN@'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I88
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+&\x0f\x03\xc0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I87
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+(\x00\xb3\xb0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I86
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+)\x01\xb9h'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I83
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00++\x04\x1e\xb0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I83
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00++\x05r\x88'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I81
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+,\x06\xf1X'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I82
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+-\x08\n\x98'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I83
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+.\t/\x90'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I83
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+/\tG\x00'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I84
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+0\x0cT@'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I84
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-47.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+1\x0b\x90\xf0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I84
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+3\x02\x90@'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I83
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+3\r]\xe0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I83
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+4\r\xf2P'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I83
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+5\x0e\xe8h'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I83
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+7\x00\x88\xb8'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I84
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-47.5 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00+8\x01\x9e\x10'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I86
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.4375 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00,\x0b\x02\xa3\xc8'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I86
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.4375 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00,\x0b\x02\xc3\x08'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I86
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.4375 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00,\x0b\x02\xe60'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I86
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.4375 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00,\x0b\x02\xfd\xa0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I86
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.4375 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00,\x0b\x03\x15\x10'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I86
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.4375 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00,\x0b\x03,\x80'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I86
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.4375 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00,\x0b\x03O\xa8'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I86
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.4375 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00,\x0b\x03_H'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I86
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.4375 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00,\x0b\x03z\xa0'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I86
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.4375 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00,\x0b\x03\x92\x10'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I86
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.4375 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00,\x0b\x03\xb9 '
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I86
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.4375 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00,\x0b\x03\xd4x'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.(dp0
+S'blood_pressure'
+p1
+S'nd'
+p2
+sS'imu_head'
+p3
+(dp4
+S'yaw'
+p5
+S' 2.6875'
+p6
+sS'roll'
+p7
+S' 359.5'
+p8
+sS'pitch'
+p9
+S'130.6875 '
+p10
+ssS'heart_rate'
+p11
+I86
+sS'imu_torso'
+p12
+(dp13
+g5
+S' 0.6875'
+p14
+sg7
+S' 176.1875\n'
+p15
+sg9
+S'-95.4375 '
+p16
+ssS'steplength'
+p17
+g2
+sS'timestamp'
+p18
+cdatetime
+datetime
+p19
+(S'\x07\xe1\x0c\x13\x00,\x0b\x03\xeb\xe8'
+p20
+tp21
+Rp22
+sS'speed'
+p23
+g2
+sS'cadence'
+p24
+g2
+s.

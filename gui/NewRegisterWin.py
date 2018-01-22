@@ -6,11 +6,15 @@ from PyQt4.QtGui import*
 import ctypes
 
 class NewRegisterWin(QtGui.QMainWindow):
-
+    onData=QtCore.pyqtSignal()
     def __init__(self):
         super(NewRegisterWin,self).__init__()
+        self.patient = {'name' : None ,'id' : None,'age': None,'gender':None,'height': None,'crotch':None}
         self.init_ui()
+
         ##Signals
+        self.set_signals()
+
     def init_ui(self):
         #-------main config-------
         #Window title
@@ -109,8 +113,7 @@ class NewRegisterWin(QtGui.QMainWindow):
         Icon3=QtGui.QPixmap("gui/img/registerbutt.png")
         Icon_resize3= Icon3.scaled(self.winsize_h*0.15 ,self.winsize_h*0.15,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.start.setPixmap(Icon_resize3)
-        
-        
+                
         #setting background close image
         self.stop=QtGui.QLabel(self)
         self.stop.setGeometry(QtCore.QRect(self.winsize_h*0.943,self.winsize_v*0.02,self.winsize_h*0.038 ,self.winsize_h*0.038))
@@ -118,22 +121,42 @@ class NewRegisterWin(QtGui.QMainWindow):
         Icon_resize5= Icon4.scaled(self.winsize_h*0.038 ,self.winsize_h*0.038,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.stop.setPixmap(Icon_resize5)
 
-
         self.controlButtons = {}
         #register button
         self.controlButtons['register'] =QtGui.QCommandLinkButton(self)
         self.controlButtons['register'].setGeometry(QtCore.QRect(self.winsize_h*0.75,self.winsize_v*0.65,self.winsize_h*0.135 ,self.winsize_h*0.15))
         self.controlButtons['register'].setIconSize(QSize(0,0))
 
-  
-
-        
         #Close button
         self.controlButtons['close'] = QtGui.QCommandLinkButton(self)
         self.controlButtons['close'].setGeometry(QtCore.QRect(self.winsize_h*0.943,self.winsize_v*0.02,self.winsize_h*0.038 ,self.winsize_h*0.038))
         self.controlButtons['close'].setIconSize(QSize(0,0))
         
-        self.show()
+    
+    def set_signals(self):
+        self.controlButtons['register'].clicked.connect(self.get_patient_data)
+        self.controlButtons['close'].clicked.connect(self.hide)
+
+    def get_patient_data(self):
+        name      = str(self.NameDisplay['read'].text())
+        id_number = str(self.IDDisplay['read'].text())
+        age       = str(self.YearDisplay['read'].text())
+        gender    = str(self.GenderDisplay['read'].currentText())
+        height    = str(self.AlturaDisplay['read'].text())
+        crotch    = str(self.AlturaEDisplay['read'].text())
+
+        self.patient = {'name' : name ,'id' : id_number,'age':age,'gender':gender,'height': height,'crotch':crotch}
+        print(self.patient)
+        self.onData.emit()
+        self.hide()
+
+    def getPatient(self):
+        return self.patient
+
+
+        
+
+
 
 #def main():
     #app=QtGui.QApplication(sys.argv)

@@ -11,6 +11,9 @@ class MainMenuWin(QtGui.QMainWindow):
         super(MainMenuWin,self).__init__()
         self.init_ui()
         ##Signals
+        self.set_signals()
+
+
     def init_ui(self):
         #-------main config-------
         #Window title
@@ -112,7 +115,6 @@ class MainMenuWin(QtGui.QMainWindow):
         self.controlButtons['close'].setGeometry(QtCore.QRect(self.winsize_h*0.943,self.winsize_v*0.02,self.winsize_h*0.038 ,self.winsize_h*0.038))
         self.controlButtons['close'].setIconSize(QSize(0,0))
         
-        self.show()
 
     #------------------------------------SIGNAL METHODS------------------------------------------------------------------------------
     def connectStartButton(self,f):
@@ -121,6 +123,13 @@ class MainMenuWin(QtGui.QMainWindow):
         self.controlButtons['stop'].clicked.connect(f)
     def connectNewRegisterButton(self, f):
         self.controlButtons['newregister'].clicked.connect(f)
+
+    def connectCloseButton(self):
+        self.controlButtons['close'].clicked.connect(self.close)
+
+    def set_signals(self):
+        self.connectCloseButton()
+
         
         
 

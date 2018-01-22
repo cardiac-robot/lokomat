@@ -149,7 +149,7 @@ class EcgSensor(sensors.sensor):
 
 
 def main():
-    ecg = EcgSensor(port = 'COM3')
+    ecg = EcgSensor(port = 'COM6')
     ecg.start()
     ecg.play()
     for x in range(10):

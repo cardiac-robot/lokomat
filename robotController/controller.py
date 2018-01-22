@@ -52,7 +52,7 @@ class RobotModule(ALModule):
 class RobotController(object):
 
     def __init__(self,settings = { 'name'           : "Palin",
-                                   'ip'             : '10.30.0.110',
+                                   'ip'             : '192.167.0.101',
                                    'port'           : 9559,
                                    'UseSpanish'     : True,
                                    'MotivationTime' : 300000000
@@ -202,7 +202,7 @@ class RobotController(object):
 def main():
 
 
-    nao = RobotController(ip = '10.30.0.191', useSpanish = True)
+    nao = RobotController(ip = '192.167.0.101', useSpanish = True)
     
     
     nao.set_sentences()

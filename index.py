@@ -7,7 +7,13 @@ Created on Wed Oct 25 17:23:31 2017
 """
 
 import threading
+
 import gui.Interface as interface
+import gui.IDRegisterWin as IdRegisterWin
+import gui.MainMenuWin as MainMenuWin
+import gui.NewRegisterWin as NewRegisterWin
+
+import db.database as database
 #import lib.Analog_Joystick_rpi as Joy
 #import lib.manager as man
 import lib.ManagerTx as ManagerTx       
@@ -16,27 +22,29 @@ from PyQt4 import QtCore, QtGui
 import time
 import sys
 
-class LokomatInterface(object):
 
+class LokomatInterface(object):
+    
     def __init__(self, settings = {
-                                    'UseSensors': True,
+                                    'UseSensors': False,
                                     'UseRobot'  : True,
-                                    'RobotIp'   : "172.16.106.142",
+                                    'RobotIp'   : "192.168.0.100",
                                     'RobotPort' : 9559
                                   }
-
                                     ):
-        self.therapy_win = interface.MainTherapyWin()
-        #conntecting to interface
-        self.therapy_win.connectStartButton(self.on_start_clicked)
-        self.therapy_win.connectStopButton(self.on_stop_clicked)
-
-
-        
         #load settings
         self.settings = settings
-        #therapy win interface object
+        #Interface Objects
+        self.therapy_win = interface.MainTherapyWin()
+        self.IdRegisterWin = IdRegisterWin.IDRegisterWin()
+        self.MainMenuWin = MainMenuWin. MainMenuWin()
+        self.NewRegisterWin = NewRegisterWin.NewRegisterWin()
+        #create database manager
+        self.DataManager = database.DataManager()
 
+        
+
+        #therapy win interface object
         if self.settings['UseRobot']:
             self.RobotCaptureThread = RobotCaptureThread(interface = self)
 
@@ -86,12 +94,13 @@ class LokomatInterface(object):
         if self.settings['UseSensors']:
             
             # set sensors
-            self.ManagerRx.set_sensors(ecg = False, imu = True , joy= True )
+            self.ManagerRx.set_sensors(ecg = False, imu = True, joy= True )
             # threads
             
             #sensor update processes
             self.ImuCaptureThread   = ImuCaptureThread(interface = self)
             self.JoyCaptureThread   = JoyCaptureThread(interface = self)
+            self.EcgCaptureThread   = EcgCaptureThread(interface = self)
             #binding functions
             self.ManagerRx.joy_gui_bind(self.joy_handler)
             self.ManagerRx.imu_gui_bind(self.imu_handler)  
@@ -102,6 +111,72 @@ class LokomatInterface(object):
         self.ON = True
         #sample time
 
+       
+        #conntecting to interface
+        self.therapy_win.connectStartButton(self.on_start_clicked)
+        self.therapy_win.connectStopButton(self.on_stop_clicked)
+        self.therapy_win.connectStopButton(self.DataManager.pipe_sensor_data)
+        self.therapy_win.connectCloseButton(self.DataManager.clearRegisterStatus)
+        # Interface Signals connections
+        self.MainMenuWin.connectNewRegisterButton(f = self.NewRegisterWin.show)
+        self.MainMenuWin.connectStartButton(f = self.start_therapy)
+        self.NewRegisterWin.onData.connect(self.save_patient)
+        self.therapy_win.onSensorUpdate.connect(self.save_sensor_data)
+        self.IdRegisterWin.onRegister.connect(self.validate_patient)
+
+        #
+        self.MainMenuWin.show()
+
+
+    # save patient
+    def save_patient(self):
+        d = self.NewRegisterWin.getPatient()
+        self.DataManager.register( name = d['name'], age = d['age'], gender =d['gender'] , height = d['height'], crotch=d['crotch'], id_number = d['id'])
+    
+    # save sensor data in database     
+    def save_sensor_data(self):
+        self.DataManager.get_sensor_reading(speed = "nd",
+                                            heart_rate = self.data['ecg']['hr'],
+                                            steplength = "nd", 
+                                            cadence = "nd", 
+                                            blood_pressure = "nd",
+                                            imu_head =  self.data['imu1'],
+                                            imu_torso = self.data['imu2']
+                                            )
+
+    #start therapy logic implementation
+    def start_therapy(self):
+        if self.DataManager.RegisterStatus[0]:
+        
+            self.therapy_win.show()
+        
+        else:
+            self.IdRegisterWin.show()
+
+    #find the patient on th database and update the register status
+    def validate_patient(self):
+        print('enter validate patient')
+        id_number = self.IdRegisterWin.getId()
+        self.DataManager.find_patient(id_number)
+        
+        if self.DataManager.RegisterStatus[0] == 0:
+            #call register window
+            self.NewRegisterWin.show()
+        elif self.DataManager.RegisterStatus[0] == 1:
+            #the patient is already registered and the therapy can start
+            self.start_session()
+
+    
+
+    def start_session(self):
+
+        self.therapy_win.show()
+        self.DataManager.create_session()
+        self.DataManager.create_data_folder()
+
+
+#################################################################################################
+
     def on_start_clicked(self):
         print('started from index')
         #self.therapy_win.onStart.emit()        
@@ -111,6 +186,7 @@ class LokomatInterface(object):
             print('sensors')
             self.ImuCaptureThread.start()
             self.JoyCaptureThread.start()
+            self.EcgCaptureThread.start()
 
         if self.settings['UseRobot']:
             self.RobotCaptureThread.start()
@@ -160,31 +236,34 @@ class LokomatInterface(object):
 
         if self.settings['UseSensors']:
             #self.ManagerRx  .update_data()
-            data = self.ManagerRx.get_data()
-            print(data)
+            self.data = self.ManagerRx.get_data()
+            print(self.data)
             self.therapy_win.update_display_data(d = {
-                                                        'hr' : data['ecg']['hr'],
-                                                        'yaw_t' : data['imu1']['yaw'],
-                                                        'pitch_t' : data['imu1']['pitch'],
-                                                        'roll_t' : data['imu1']['roll'],
-                                                        'yaw_c' : data['imu2']['yaw'],
-                                                        'pitch_c' : data['imu2']['pitch'],
-                                                        'roll_c' : data['imu2']['roll']
+                                                        'hr' : self.data['ecg']['hr'],
+                                                        'yaw_t' : self.data['imu1']['yaw'],
+                                                        'pitch_t' : self.data['imu1']['pitch'],
+                                                        'roll_t' : self.data['imu1']['roll'],
+                                                        'yaw_c' : self.data['imu2']['yaw'],
+                                                        'pitch_c' : self.data['imu2']['pitch'],
+                                                        'roll_c' : self.data['imu2']['roll']
                                                       }
                                     )
+            self.therapy_win.onSensorUpdate.emit()
+
         else:
             print('no sensors')
             self.ManagerRx.simulate_data()
-            data = self.ManagerRx.get_data()
+            self.data = self.ManagerRx.get_data()
             self.therapy_win.update_display_data(d = {
-                                                        'hr' : data['ecg']['hr'],
-                                                        'yaw_t' : data['imu1']['yaw'],
-                                                        'pitch_t' : data['imu1']['pitch'],
-                                                        'roll_t' : data['imu1']['roll'],
-                                                        'yaw_c' : data['imu2']['yaw'],
-                                                        'pitch_c' : data['imu2']['pitch'],
-                                                        'roll_c' : data['imu2']['roll']
+                                                        'hr' : self.data['ecg']['hr'],
+                                                        'yaw_t' : self.data['imu1']['yaw'],
+                                                        'pitch_t' : self.data['imu1']['pitch'],
+                                                        'roll_t' : self.data['imu1']['roll'],
+                                                        'yaw_c' : self.data['imu2']['yaw'],
+                                                        'pitch_c' : self.data['imu2']['pitch'],
+                                                        'roll_c' : self.data['imu2']['roll']
                                                       })
+            self.therapy_win.onSensorUpdate.emit()
 
 
     def shutdown(self):
@@ -194,7 +273,25 @@ class LokomatInterface(object):
             #sensor update processes
             self.ImuCaptureThread.shutdown()
             self.JoyCaptureThread.shutdown()
+            self.EcgCaptureThread.shutdown()
 
+
+
+
+
+
+class EcgCaptureThread(QtCore.QThread):
+    def __init__(self, parent = None, sample = 1, interface = None):
+        super(EcgCaptureThread,self).__init__()
+        self.on = False 
+        self.interface = interface
+
+    def run(self):
+        self.interface.ManagerRx.ecg_thread()
+
+    def shutdown(self):
+        self.on = False 
+        self.interface.ManagerRx.ecg_shutdown()
 
 
 class ImuCaptureThread(QtCore.QThread):

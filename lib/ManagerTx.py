@@ -19,8 +19,8 @@ import serial
 class ManagerRx(object):
 
 	def __init__(self, settings = {
-									'joy_port'  : 'COM4',
-									'imu_port'  : 'COM5',
+									'joy_port'  : 'COM5',
+									'imu_port'  : 'COM4',
 									'ecg_port'  : 'COM6',
 									'joy_sample': 0.1,
 									'imu_sample': 1,
@@ -52,7 +52,7 @@ class ManagerRx(object):
 			 			'borg' : 0
 		 			  }
 
-	def set_sensors(self, imu = False, joy = False, ecg = False):
+	def set_sensors(self, imu = True, joy = True, ecg = True):
 		
 		self.JOY_ON = joy
 		self.IMU_ON = imu
@@ -80,10 +80,13 @@ class ManagerRx(object):
 			'''
 
 		if self.ECG_ON:
+			print('open ecg port')
 			self.ecg = ECG.EcgSensor(
 									  port   = self.settings['ecg_port'],
 									  sample = self.settings['ecg_sample']
 									)
+			print('ecg play')
+			self.ecg.start()
 			self.ecg.play()
 			self.ecgThread = threading.Thread(target = self.ecg_thread) 
 
@@ -199,6 +202,7 @@ class ManagerRx(object):
 
 		while self.ECG_ON:
 			ecg = self.ecg.get_data()
+			print ecg
 			if not ecg:
 				ecg = {'hr' : 0}
 			self.data['ecg'] = ecg

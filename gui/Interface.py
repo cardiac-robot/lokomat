@@ -10,7 +10,8 @@ class MainTherapyWin(QtGui.QMainWindow):
     onJoy=QtCore.pyqtSignal()
     onStart = QtCore.pyqtSignal()
     onStop = QtCore.pyqtSignal()
-    onBorg = QtCore.pyqtSignal()   
+    onBorg = QtCore.pyqtSignal()
+    onSensorUpdate = QtCore.pyqtSignal()   
 
     def __init__(self):
         super(MainTherapyWin,self).__init__()
@@ -170,8 +171,6 @@ class MainTherapyWin(QtGui.QMainWindow):
         #create borgscale button
         self.Borg = BorgButton(self)
 
-        self.show()
-
     def set_correctPostureImage(self):
         self.LabelPosture.setPixmap(QtGui.QPixmap('img/Goodposture'))
     def set_badCervicalPostureImage(self):
@@ -182,6 +181,7 @@ class MainTherapyWin(QtGui.QMainWindow):
     def set_signals(self):
         self.controlButtons['start'].clicked.connect(self.onStartClicked)
         self.controlButtons['stop'].clicked.connect(self.onStopClicked)
+        self.controlButtons['close'].clicked.connect(self.hide)
         self.onData.connect(self.display_data)
         self.onJoy.connect(self.Borg.move)
 
@@ -189,6 +189,9 @@ class MainTherapyWin(QtGui.QMainWindow):
     def connectStartButton(self, f):
         print('connectStartButton')
         self.controlButtons['start'].clicked.connect(f)
+
+    def connectCloseButton(self,f):
+        self.controlButtons['close'].clicked.connect(f)    
 
     def connectStopButton(self, f):
         self.controlButtons['stop'].clicked.connect(f)

@@ -6,11 +6,13 @@ from PyQt4.QtGui import*
 import ctypes
 
 class IDRegisterWin(QtGui.QMainWindow):
+    onRegister = QtCore.pyqtSignal()
 
     def __init__(self):
         super(IDRegisterWin,self).__init__()
         self.init_ui()
         ##Signals
+        self.set_signals()
     def init_ui(self):
         #-------main config-------
         #Window title
@@ -70,7 +72,18 @@ class IDRegisterWin(QtGui.QMainWindow):
         self.controlButtons['close'].setGeometry(QtCore.QRect(self.winsize_h*0.943,self.winsize_v*0.02,self.winsize_h*0.038 ,self.winsize_h*0.038))
         self.controlButtons['close'].setIconSize(QSize(0,0))
         
-        self.show()
+
+    def set_signals(self):
+        self.controlButtons['close'].clicked.connect(self.hide)
+        self.controlButtons['register'].clicked.connect(self.get_id_data)
+
+    def get_id_data(self):
+        self.id = self.NameDisplay['read'].text()
+        self.onRegister.emit()
+        self.hide()
+
+    def getId(self):
+        return self.id
 
 #def main():
     #app=QtGui.QApplication(sys.argv)
