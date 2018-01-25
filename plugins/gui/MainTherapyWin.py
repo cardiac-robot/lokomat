@@ -6,16 +6,19 @@ from PyQt4.QtGui import*
 import ctypes
 
 class MainTherapyWin(QtGui.QMainWindow):
-    onData=QtCore.pyqtSignal()
-    onJoy=QtCore.pyqtSignal()
-    onStart = QtCore.pyqtSignal()
-    onStop = QtCore.pyqtSignal()
-    onBorg = QtCore.pyqtSignal()
+    #signal creation
+    onData         = QtCore.pyqtSignal()
+    onJoy          = QtCore.pyqtSignal()
+    onStart        = QtCore.pyqtSignal()
+    onStop         = QtCore.pyqtSignal()
+    onBorg         = QtCore.pyqtSignal()
     onSensorUpdate = QtCore.pyqtSignal()   
-
-    def __init__(self):
+    #init function
+    def __init__(self, ph = None):
         super(MainTherapyWin,self).__init__()
-        self.init_ui()
+        #variables
+        self.projectHandler = ph
+
         self.dataToDisplay={'hr':0,
                             'yaw_t':0,
                             'pitch_t':0,
@@ -24,8 +27,12 @@ class MainTherapyWin(QtGui.QMainWindow):
                             'pitch_v':0,
                             'roll_v':0
                             }
+        #interface setup
+        self.init_ui()
         #set signals
         self.set_signals()
+
+
     def init_ui(self):
         #-------main config-------
         #Window title

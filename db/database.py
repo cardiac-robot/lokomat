@@ -33,6 +33,10 @@ class DataManager(object):
 			self.RegisterStatus = [0,{'name':"no data"}]
 		print self.RegisterStatus
 
+	def get_settings(self):
+		a = self.DbManager.db.settings.find({})	
+		for i in a:
+			return	i
 
 	#register method, validates the existence of the patient and stores the patient if is new
 	def register(self, name = "nd", age = "nd", gender = "nd", height = "nd", crotch= "nd", id_number = 'nd'):
@@ -157,9 +161,12 @@ class ProjectHandler(object):
 						'db'  			  : '/db',
 						'backup'		  : '/db/backup',
 						'data'			  : '/db/data',
-						'gui' 			  : '/gui',
-						'lib' 			  : '/lib',
-						'robotController' : '/robotController'
+						'plugin'		  : '/plugins',
+						'gui' 			  : '/plugins/gui',
+						'img'             : '/plugins/gui/img',
+						'sensorLib'       : '/plugins/lib',
+						'robotController' : '/plugin/robotController'						
+
 					 } 
  		#create database client
 		self.client = pymongo.MongoClient()

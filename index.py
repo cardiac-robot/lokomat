@@ -8,26 +8,72 @@ Created on Wed Oct 25 17:23:31 2017
 
 import threading
 
-import gui.Interface as interface
-import gui.IDRegisterWin as IdRegisterWin
-import gui.MainMenuWin as MainMenuWin
-import gui.NewRegisterWin as NewRegisterWin
+import plugins.gui.MainTherapyWin as interface
+import plugins.gui.IDRegisterWin as IdRegisterWin
+import plugins.gui.MainMenuWin as MainMenuWin
+import plugins.gui.NewRegisterWin as NewRegisterWin
 
 import db.database as database
 #import lib.Analog_Joystick_rpi as Joy
 #import lib.manager as man
-import lib.ManagerTx as ManagerTx       
-import robotController.controller as controller
+import plugins.MainTherapyPlugin as MainTherapyPlugin
+import plugins.lib.SensorManager as Manager       
+import plugins.robotController.controller as controller
 from PyQt4 import QtCore, QtGui
+
+
+
 import time
 import sys
+
+class Index(object):
+    def __init__(self):
+
+        self.MainMenuPlugin = self.MainMenuPlugin()
+
+
+
+
+class MainMenuPlugin(object):
+    def __init__(self):
+        #create database client
+        self.DataManager = database.DataManager()
+        #launch project handler and paths controller
+        self.ProjectHandler = database.ProjectHandler()
+        #create GUI for main menu
+        self.MainMenuWin = MainMenuWin.MainMenuWin(project_handler = self.ProjectHandler)
+        
+        #Plugins creation
+
+        #create MainTherapyPlugin
+        self.MainTherapyPlugin = MainTherapyPlugin.MainTherapyPlugin(settings = {
+                                                                                    'projectHandler' : {
+                                                                                                        'db'   :   self.DataManager,
+                                                                                                        'paths':   self.ProjectHandler
+                                                                                                        } 
+                                                                                }
+                                                                    )
+
+        #set signals and connections
+        self.set_signals()
+
+        #show GUI
+        self.MainMenuWin.show()
+
+
+    def set_signals(self):
+        #connect start therapy button with start threapy plugin
+        self.MainMenuWin.connectStartButton(self.MainTherapyPlugin.launch_gui)
+
+
+
 
 
 class LokomatInterface(object):
     
     def __init__(self, settings = {
                                     'UseSensors': False,
-                                    'UseRobot'  : True,
+                                    'UseRobot'  : False,
                                     'RobotIp'   : "192.168.0.100",
                                     'RobotPort' : 9559
                                   }
@@ -35,12 +81,13 @@ class LokomatInterface(object):
         #load settings
         self.settings = settings
         #Interface Objects
-        self.therapy_win = interface.MainTherapyWin()
-        self.IdRegisterWin = IdRegisterWin.IDRegisterWin()
+        #self.therapy_win = interface.MainTherapyWin()
+        #self.IdRegisterWin = IdRegisterWin.IDRegisterWin()
         self.MainMenuWin = MainMenuWin. MainMenuWin()
-        self.NewRegisterWin = NewRegisterWin.NewRegisterWin()
+        
+        #self.NewRegisterWin = NewRegisterWin.NewRegisterWin()
         #create database manager
-        self.DataManager = database.DataManager()
+        #self.DataManager = database.DataManager()
 
         
 
@@ -91,6 +138,7 @@ class LokomatInterface(object):
                             'imu_baud'  : 9600,
                             'ecg_sample': 1
                           })
+
         if self.settings['UseSensors']:
             
             # set sensors
@@ -362,5 +410,5 @@ class SensorUpdateThread(QtCore.QThread):
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
-    a =LokomatInterface()
+    a =MainMenuPlugin()
     sys.exit(app.exec_())

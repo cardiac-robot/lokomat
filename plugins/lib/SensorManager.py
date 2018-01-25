@@ -8,7 +8,7 @@ import random
 if __name__== "__main__":
     import ecg_sensor as ECG
 else:
-    import lib.ecg_sensor as ECG
+    import plugins.lib.ecg_sensor as ECG
 
 import threading
 import serial
