@@ -17,6 +17,7 @@ import db.database as database
 #import lib.Analog_Joystick_rpi as Joy
 #import lib.manager as man
 import plugins.MainTherapyPlugin as MainTherapyPlugin
+import plugins.NewRegisterPlugin as NewRegisterPlugin      
 import plugins.lib.SensorManager as Manager       
 import plugins.robotController.controller as controller
 from PyQt4 import QtCore, QtGui
@@ -54,6 +55,15 @@ class MainMenuPlugin(object):
                                                                                 }
                                                                     )
 
+        #create NewRegisterPlugin
+        self.NewRegisterPlugin = NewRegisterPlugin.NewRegisterPlugin( settings = {
+                                                                                    'projectHandler' : {
+                                                                                                        'db'   :   self.DataManager,
+                                                                                                        'paths':   self.ProjectHandler
+                                                                                                        } 
+                                                                                }
+                                                                    )    
+
         #set signals and connections
         self.set_signals()
 
@@ -64,6 +74,9 @@ class MainMenuPlugin(object):
     def set_signals(self):
         #connect start therapy button with start threapy plugin
         self.MainMenuWin.connectStartButton(self.MainTherapyPlugin.launch_gui)
+        #connect new Register button with the new register plugin
+        self.MainMenuWin.connectNewRegisterButton(self.NewRegisterPlugin.launch_gui)
+
 
 
 
