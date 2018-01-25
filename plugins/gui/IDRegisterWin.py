@@ -8,8 +8,9 @@ import ctypes
 class IDRegisterWin(QtGui.QMainWindow):
     onRegister = QtCore.pyqtSignal()
 
-    def __init__(self):
+    def __init__(self,project_Handler):
         super(IDRegisterWin,self).__init__()
+        self.project_Handler=project_Handler
         self.init_ui()
         ##Signals
         self.set_signals()
@@ -28,7 +29,7 @@ class IDRegisterWin(QtGui.QMainWindow):
         #setting backgroung image
         self.label_background=QtGui.QLabel(self)
         self.label_background.setGeometry(QtCore.QRect(0,0,self.winsize_h,self.winsize_v))
-        self.label_background.setPixmap(QtGui.QPixmap("gui/img/Window.png"))
+        self.label_background.setPixmap(QtGui.QPixmap(self.project_Handler.paths["img"]+ "/Window.png"))
         self.label_background.setScaledContents(True)
         #----------------------------------
         #-----------Labels config----------
@@ -48,13 +49,13 @@ class IDRegisterWin(QtGui.QMainWindow):
         #setting background user image
         self.start=QtGui.QLabel(self)
         self.start.setGeometry(QtCore.QRect(self.winsize_h*0.75,self.winsize_v*0.65,self.winsize_h*0.15 ,self.winsize_h*0.15))
-        Icon3=QtGui.QPixmap("gui/img/terapiastart.png")
+        Icon3=QtGui.QPixmap(self.project_Handler.paths["img"]+"/terapiastart.png")
         Icon_resize3= Icon3.scaled(self.winsize_h*0.15 ,self.winsize_h*0.15,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.start.setPixmap(Icon_resize3)
         #setting background close image
         self.stop=QtGui.QLabel(self)
         self.stop.setGeometry(QtCore.QRect(self.winsize_h*0.943,self.winsize_v*0.02,self.winsize_h*0.038 ,self.winsize_h*0.038))
-        Icon4=QtGui.QPixmap("gui/img/closebtn.png")
+        Icon4=QtGui.QPixmap(self.project_Handler.paths["img"]+"/closebtn.png")
         Icon_resize5= Icon4.scaled(self.winsize_h*0.038 ,self.winsize_h*0.038,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.stop.setPixmap(Icon_resize5)
 

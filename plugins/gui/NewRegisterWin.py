@@ -7,9 +7,10 @@ import ctypes
 
 class NewRegisterWin(QtGui.QMainWindow):
     onData=QtCore.pyqtSignal()
-    def __init__(self):
+    def __init__(self,project_Handler):
         super(NewRegisterWin,self).__init__()
         self.patient = {'name' : None ,'id' : None,'age': None,'gender':None,'height': None,'crotch':None}
+        self.project_Handler=project_Handler
         self.init_ui()
 
         ##Signals
@@ -30,7 +31,7 @@ class NewRegisterWin(QtGui.QMainWindow):
         #setting backgroung image
         self.label_background=QtGui.QLabel(self)
         self.label_background.setGeometry(QtCore.QRect(0,0,self.winsize_h,self.winsize_v))
-        self.label_background.setPixmap(QtGui.QPixmap("Window.png"))
+        self.label_background.setPixmap(QtGui.QPixmap(self.project_Handler.paths["img"]+"\Window.png"))
         self.label_background.setScaledContents(True)
         #----------------------------------
         #-----------Labels config----------
@@ -110,14 +111,14 @@ class NewRegisterWin(QtGui.QMainWindow):
         #setting background user image
         self.start=QtGui.QLabel(self)
         self.start.setGeometry(QtCore.QRect(self.winsize_h*0.75,self.winsize_v*0.65,self.winsize_h*0.15 ,self.winsize_h*0.15))
-        Icon3=QtGui.QPixmap("gui/img/registerbutt.png")
+        Icon3=QtGui.QPixmap(self.project_Handler.paths["img"]+"/registerbutt.png")
         Icon_resize3= Icon3.scaled(self.winsize_h*0.15 ,self.winsize_h*0.15,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.start.setPixmap(Icon_resize3)
                 
         #setting background close image
         self.stop=QtGui.QLabel(self)
         self.stop.setGeometry(QtCore.QRect(self.winsize_h*0.943,self.winsize_v*0.02,self.winsize_h*0.038 ,self.winsize_h*0.038))
-        Icon4=QtGui.QPixmap("gui/img/closebtn.png")
+        Icon4=QtGui.QPixmap(self.project_Handler.paths["img"]+"/closebtn.png")
         Icon_resize5= Icon4.scaled(self.winsize_h*0.038 ,self.winsize_h*0.038,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.stop.setPixmap(Icon_resize5)
 
