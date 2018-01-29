@@ -7,10 +7,12 @@ import ctypes
 
 class MainMenuWin(QtGui.QMainWindow):
 
-    def __init__(self,project_Handler):
+    def __init__(self, project_Handler):
         super(MainMenuWin,self).__init__()
-        self.init_ui()
         self.project_Handler=project_Handler
+        
+        self.init_ui()
+        
         ##Signals
         self.set_signals()
 

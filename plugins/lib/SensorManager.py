@@ -57,18 +57,7 @@ class ManagerRx(object):
 		self.JOY_ON = joy
 		self.IMU_ON = imu
 		self.ECG_ON = ecg
-		
-		if self.JOY_ON:
-			print('open joy port')
-			self.joySerial = serial.Serial(self.settings['joy_port'], self.settings['joy_baud'], timeout = 1)
-			time.sleep(3)
-
-			'''
-			while self.joySerial.in_waiting:	
-				a = self.joySerial.read()
-				print('set sensors')
-				print(a)
-			'''
+		 
 		if self.IMU_ON:
 			
 			print('open imu port')

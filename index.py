@@ -42,7 +42,7 @@ class MainMenuPlugin(object):
         #launch project handler and paths controller
         self.ProjectHandler = database.ProjectHandler()
         #create GUI for main menu
-        self.MainMenuWin = MainMenuWin.MainMenuWin(project_handler = self.ProjectHandler)
+        self.MainMenuWin = MainMenuWin.MainMenuWin(project_Handler = self.ProjectHandler)
         
         #Plugins creation
 
@@ -66,7 +66,6 @@ class MainMenuPlugin(object):
 
         #set signals and connections
         self.set_signals()
-
         #show GUI
         self.MainMenuWin.show()
 
@@ -155,7 +154,7 @@ class LokomatInterface(object):
         if self.settings['UseSensors']:
             
             # set sensors
-            self.ManagerRx.set_sensors(ecg = False, imu = True, joy= True )
+            self.ManagerRx.set_sensors(ecg = False, imu = False)
             # threads
             
             #sensor update processes

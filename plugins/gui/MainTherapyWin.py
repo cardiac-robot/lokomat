@@ -14,19 +14,20 @@ class MainTherapyWin(QtGui.QMainWindow):
     onBorg         = QtCore.pyqtSignal()
     onSensorUpdate = QtCore.pyqtSignal()   
     #init function
-    def __init__(self, ph = None):
+    def __init__(self, project_Handler = None):
         super(MainTherapyWin,self).__init__()
         #variables
-        self.projectHandler = ph
+        self.project_Handler = project_Handler
 
-        self.dataToDisplay={'hr':0,
-                            'yaw_t':0,
-                            'pitch_t':0,
-                            'roll_t':0,
-                            'yaw_v':0,
-                            'pitch_v':0,
-                            'roll_v':0
-                            }
+        self.dataToDisplay = {
+                              'hr':0,
+                              'yaw_t':0,
+                              'pitch_t':0,
+                              'roll_t':0,
+                              'yaw_v':0,
+                              'pitch_v':0,
+                              'roll_v':0
+                             }
         #interface setup
         self.init_ui()
         #set signals
@@ -53,7 +54,7 @@ class MainTherapyWin(QtGui.QMainWindow):
         #setting backgroung image
         self.label_background=QtGui.QLabel(self)
         self.label_background.setGeometry(QtCore.QRect(0,0,self.winsize_h,self.winsize_v))
-        self.label_background.setPixmap(QtGui.QPixmap("gui/img/Interfaz.png"))
+        self.label_background.setPixmap(QtGui.QPixmap(self.project_Handler.paths['img'] + "/Interfaz.png"))
         self.label_background.setScaledContents(True)
         #Image=QImage("img/Interfaz.png")
         #sImage=Image.scaled(self.winsize_h,self.winsize_v,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
@@ -133,7 +134,7 @@ class MainTherapyWin(QtGui.QMainWindow):
         
         self.start=QtGui.QLabel(self)
         self.start.setGeometry(QtCore.QRect(self.winsize_h*0.87,self.winsize_v*0.35,self.winsize_h*0.055 ,self.winsize_h*0.055))
-        Icon3=QtGui.QPixmap("gui/img/play3.png")
+        Icon3=QtGui.QPixmap(self.project_Handler.paths['img'] + "/play3.png")
         Icon_resize3= Icon3.scaled(self.winsize_h*0.055 ,self.winsize_h*0.055,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.start.setPixmap(Icon_resize3)
         
@@ -141,7 +142,7 @@ class MainTherapyWin(QtGui.QMainWindow):
         
         self.stop=QtGui.QLabel(self)
         self.stop.setGeometry(QtCore.QRect(self.winsize_h*0.87,self.winsize_v*0.48,self.winsize_h*0.055 ,self.winsize_h*0.055))
-        Icon4=QtGui.QPixmap("gui/img/stop1.png")
+        Icon4=QtGui.QPixmap(self.project_Handler.paths['img'] + "/stop1.png")
         Icon_resize5= Icon4.scaled(self.winsize_h*0.055 ,self.winsize_h*0.055,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.stop.setPixmap(Icon_resize5)
         
@@ -173,24 +174,24 @@ class MainTherapyWin(QtGui.QMainWindow):
         #
         self.LabelPosture=QtGui.QLabel(self)
         self.LabelPosture.setGeometry(QtCore.QRect(self.winsize_h*0.54,self.winsize_v*0.15,self.winsize_h*0.2 ,self.winsize_h*0.25))
-        self.LabelPosture.setPixmap(QtGui.QPixmap('img/cervical'))
+        self.LabelPosture.setPixmap(QtGui.QPixmap(self.project_Handler.paths['img'] + '/cervical'))
 
         #create borgscale button
-        self.Borg = BorgButton(self)
+        #self.Borg = BorgButton(self)
 
     def set_correctPostureImage(self):
-        self.LabelPosture.setPixmap(QtGui.QPixmap('img/Goodposture'))
+        self.LabelPosture.setPixmap(QtGui.QPixmap(self.project_Handler.paths['img'] + '/Goodposture'))
     def set_badCervicalPostureImage(self):
-        self.LabelPosture.setPixmap(QtGui.QPixmap('img/Bad posture'))
+        self.LabelPosture.setPixmap(QtGui.QPixmap(self.project_Handler.paths['img'] + '/Bad posture'))
     def set_badCervicalPostureImage(self):
-        self.LabelPosture.setPixmap(QtGui.QPixmap('img/BadPostureT'))
+        self.LabelPosture.setPixmap(QtGui.QPixmap(self.project_Handler.paths['img'] + '/BadPostureT'))
 
     def set_signals(self):
         self.controlButtons['start'].clicked.connect(self.onStartClicked)
         self.controlButtons['stop'].clicked.connect(self.onStopClicked)
         self.controlButtons['close'].clicked.connect(self.hide)
         self.onData.connect(self.display_data)
-        self.onJoy.connect(self.Borg.move)
+        #self.onJoy.connect(self.Borg.move)
 
     #----------------------------- SIGNAL METHODS ------------------------------
     def connectStartButton(self, f):
@@ -221,8 +222,8 @@ class MainTherapyWin(QtGui.QMainWindow):
                                         'roll_c' : 7
                                         }
                                 )
-        self.Borg.j = 4
-        self.Borg.move()
+        #self.Borg.j = 4
+        #self.Borg.move()
 
     def display_data(self):
 
@@ -267,8 +268,8 @@ class MainTherapyWin(QtGui.QMainWindow):
                                         'borg': 0
                                         }
                                         )
-        self.Borg.j = 2
-        self.Borg.move()
+        #self.Borg.j = 2
+        #self.Borg.move()
 
 #Borg Button object
 class BorgButton(object):
@@ -279,7 +280,7 @@ class BorgButton(object):
         #setting background Label Borgº
         self.Labelborg=QtGui.QLabel(self.window)
         self.Labelborg.setGeometry(QtCore.QRect(self.window.winsize_h*0.05,self.window.winsize_v*0.81,self.window.winsize_h*0.7 ,self.window.winsize_h*0.05))
-        Icon2=QtGui.QPixmap("gui/img/borgh")
+        Icon2=QtGui.QPixmap(self.project_Handler.paths['img'] + "/borgh")
         Icon_resize= Icon2.scaled(self.window.winsize_h*0.7 ,self.window.winsize_h*0.045,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.Labelborg.setPixmap(Icon_resize)
         self.Labelborg.setScaledContents(True)
@@ -302,7 +303,7 @@ class BorgButton(object):
         w = wp
         for i in range(15):
             self.Borg.append(QtGui.QLabel(self.window))
-            Icon2=QtGui.QPixmap("gui/img/l" + str(i))
+            Icon2=QtGui.QPixmap(self.project_Handler.paths['img'] + "/l" + str(i))
             Icon_resize= Icon2.scaled(h,w,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
             self.Borg[-1].setPixmap(Icon_resize)
             self.Borg[-1].setGeometry(x,y,h,w)
