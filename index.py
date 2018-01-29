@@ -17,7 +17,8 @@ import db.database as database
 #import lib.Analog_Joystick_rpi as Joy
 #import lib.manager as man
 import plugins.MainTherapyPlugin as MainTherapyPlugin
-import plugins.NewRegisterPlugin as NewRegisterPlugin      
+import plugins.NewRegisterPlugin as NewRegisterPlugin 
+import plugins.IdRegisterPlugin as IdRegisterPlugin     
 import plugins.lib.SensorManager as Manager       
 import plugins.robotController.controller as controller
 from PyQt4 import QtCore, QtGui
@@ -31,6 +32,8 @@ class Index(object):
     def __init__(self):
 
         self.MainMenuPlugin = self.MainMenuPlugin()
+
+
 
 
 
@@ -64,6 +67,15 @@ class MainMenuPlugin(object):
                                                                                 }
                                                                     )    
 
+        
+        self.IdRegisterPlugin = IdRegisterPlugin.IdRegisterPlugin(  settings = {
+                                                                                    'projectHandler' : {
+                                                                                                        'db'   :   self.DataManager,
+                                                                                                        'paths':   self.ProjectHandler
+                                                                                                        } 
+                                                                                }
+                                                                  )
+
         #set signals and connections
         self.set_signals()
         #show GUI
@@ -72,9 +84,12 @@ class MainMenuPlugin(object):
 
     def set_signals(self):
         #connect start therapy button with start threapy plugin
-        self.MainMenuWin.connectStartButton(self.MainTherapyPlugin.launch_gui)
+        self.MainMenuWin.connectStartButton(self.IdRegisterPlugin.launch_gui)
         #connect new Register button with the new register plugin
         self.MainMenuWin.connectNewRegisterButton(self.NewRegisterPlugin.launch_gui)
+        #connect to id registerwin logic
+        self.IdRegisterPlugin.connectToOnFound(self.MainTherapyPlugin.launch_gui)
+        self.IdRegisterPlugin.connectToNotFound(self.NewRegisterPlugin.launch_gui)
 
 
 

@@ -7,6 +7,8 @@ import ctypes
 
 class IDRegisterWin(QtGui.QMainWindow):
     onRegister = QtCore.pyqtSignal()
+    onFound    = QtCore.pyqtSignal()
+    onNotFound = QtCore.pyqtSignal()
 
     def __init__(self,project_Handler):
         super(IDRegisterWin,self).__init__()
@@ -73,6 +75,7 @@ class IDRegisterWin(QtGui.QMainWindow):
         self.controlButtons['close'].setGeometry(QtCore.QRect(self.winsize_h*0.943,self.winsize_v*0.02,self.winsize_h*0.038 ,self.winsize_h*0.038))
         self.controlButtons['close'].setIconSize(QSize(0,0))
         
+
 
     def set_signals(self):
         self.controlButtons['close'].clicked.connect(self.hide)
