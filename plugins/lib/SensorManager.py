@@ -52,7 +52,7 @@ class ManagerRx(object):
 			 			'borg' : 0
 		 			  }
 
-	def set_sensors(self, imu = True, joy = True, ecg = True):
+	def set_sensors(self, imu = True, joy = False, ecg = True):
 		
 		self.JOY_ON = joy
 		self.IMU_ON = imu

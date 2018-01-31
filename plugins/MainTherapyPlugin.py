@@ -23,7 +23,7 @@ class MainTherapyPlugin(object):
 		self.MainTherapyWin  = MainTherapyWin.MainTherapyWin(project_Handler = self.settings['projectHandler']['paths'])
 		#update display thread
 		self.SensorUpdateThread = SensorUpdateThread(f = self.sensor_update, sample = 1)
-
+		#create sensor manager
 		self.Manager = Manager.ManagerRx(settings = self.settings['sensor'])
 		#robot
 		if self.settings['robot']['use']:
@@ -41,6 +41,8 @@ class MainTherapyPlugin(object):
 	def set_signals(self):
 		self.MainTherapyWin.connectStartButton(f = self.on_start_clicked)
 		self.MainTherapyWin.connectStopButton(f = self.shutdown)
+		self.MainTherapyWin.connectStopButton(f = self.finish_session)
+		self.MainTherapyWin.onSensorUpdate.connect(self.update_database)
 
 	# show GUI 
 	def launch_gui(self):
@@ -103,10 +105,15 @@ class MainTherapyPlugin(object):
 										'use'		: False
 									   }
 
+	#callback function when start button is pressed									   
 	def on_start_clicked(self):
-		print('started from index')
+		#launch sensor display update thread
 		self.SensorUpdateThread.start()
-		if self.settings['sensor']['use'] == 'True':
+		#create patient's session
+		self.settings['projectHandler']['db'].create_session()
+		self.settings['projectHandler']['db'].create_data_folder()
+		#validate settings
+		if self.settings['sensor']['use']:
 			print('sensors')
 			self.ImuCaptureThread.start()
 			self.JoyCaptureThread.start()
@@ -116,7 +123,7 @@ class MainTherapyPlugin(object):
 			self.RobotCaptureThread.start()
 
 
-
+	#display update process
 	def sensor_update(self):
 		if self.settings['sensor']['use'] :
 			self.data = self.Manager.get_data()
@@ -147,7 +154,23 @@ class MainTherapyPlugin(object):
 			                                            'roll_c' : self.data['imu2']['roll']
 			                                          })
 			self.MainTherapyWin.onSensorUpdate.emit()
+	
+	# updata db handler with last data measured
+	def update_database(self):
+		self.settings['projectHandler']['db'].get_sensor_reading(
+																 speed          ="no data" ,
+																 heart_rate     = self.data['ecg']['hr'],
+																 steplength     = "no data", 
+																 cadence        = "no data", 
+																 blood_pressure = "no data",
+																 imu_head       = self.data['imu1'],
+																 imu_torso      = self.data['imu2']
+																)
+	def finish_session(self):
+		self.settings['projectHandler']['db'].save_session()
 
+
+	# shutdown all threads and processes
 	def shutdown(self):
 		self.SensorUpdateThread.shutdown()
 		if self.settings['sensor']['use']:
@@ -166,11 +189,11 @@ class EcgCaptureThread(QtCore.QThread):
         self.interface = interface
 
     def run(self):
-        self.interface.ManagerRx.ecg_thread()
+        self.interface.Manager.ecg_thread()
 
     def shutdown(self):
         self.on = False 
-        self.interface.ManagerRx.ecg_shutdown()
+        self.interface.Manager.ecg_shutdown()
 
 #thread for IMU capture
 class ImuCaptureThread(QtCore.QThread):
@@ -180,11 +203,11 @@ class ImuCaptureThread(QtCore.QThread):
         self.interface = interface
 
     def run(self):
-        self.interface.ManagerRx.imu_thread()
+        self.interface.Manager.imu_thread()
 
     def shutdown(self):
         self.on = False 
-        self.interface.ManagerRx.imu_shutdown()
+        self.interface.Manager.imu_shutdown()
 
 #thread for Robot data transmission
 class RobotCaptureThread(QtCore.QThread):
@@ -197,7 +220,7 @@ class RobotCaptureThread(QtCore.QThread):
     def run(self):
         #self.interface.robotController.posture.goToPosture("StandZero", 1.0)
         while self.ON:
-            d = self.interface.ManagerRx.get_data()
+            d = self.interface.Manager.get_data()
             self.interface.robotController.set_data(d)
             time.sleep(self.Ts)
             

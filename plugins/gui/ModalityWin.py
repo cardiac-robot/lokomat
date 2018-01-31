@@ -6,6 +6,8 @@ from PyQt4.QtGui import*
 import ctypes
 
 class ModalitiesWin(QtGui.QMainWindow):
+    onLokomat = QtCore.pyqtSignal()
+    onBws     = QtCore.pyqtSignal()
 
     def __init__(self,project_Handler):
         super(ModalitiesWin,self).__init__()
@@ -73,7 +75,7 @@ class ModalitiesWin(QtGui.QMainWindow):
         self.Bws.setText("Soporte de peso Corporal")
         self.Bws.setStyleSheet("font-size:18px; Arial")
         self.Bws.setGeometry(QtCore.QRect(self.winsize_h*0.61,self.winsize_v*0.55,self.winsize_h*0.2 ,self.winsize_h*0.2))
-        self.show()
+        
 
 #def main():
     #app=QtGui.QApplication(sys.argv)

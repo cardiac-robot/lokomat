@@ -101,17 +101,43 @@ class DataManager(object):
 	
 
 	def pipe_sensor_data(self):
+		keys = [
+				'heartrate',
+			    'imu_head_yaw',
+			    'imu_head_pitch',
+			    'imu_head_roll',
+			    'imu_torso_yaw',
+			    'imu_torso_pitch',
+			    'imu_head_roll'
+			    ]
 
-		f = open(self.filename, 'r')
-		for i in range(self.DataWrapper.sensorSize):
-		    sensor_reading = pickle.load(f)
-		    #print sensor_reading
-		    #print self.patient_name
-		    #print self.data_handler.date
-		    self.DbManager.update_sensor_reading(name = self.patient_name, date=self.DataWrapper.date, sensor_reading=sensor_reading)
+		self.DataWrapper.close_files()
+		print self.filename1
+		f = open(self.filename1, 'r')
+		lines = f.readlines()
+		l = len(lines) - 1 
+		print f
+		for cont, a in enumerate(lines):
+			if not(cont == l):
+				b = a.strip().split(',')
+				b1 = map(float, b)
+				d = dict(zip(keys,b1))
+				d['timestamp'] = datetime.datetime.now()
+				print d 
+				self.DbManager.update_sensor_reading(name = self.patient_name, date=self.DataWrapper.date, sensor_reading = d)	
 
-		self.DataWrapper.sensorSize = 0 
-
+	def save_session(self):
+		#reset the register status variable
+		self.RegisterStatus = [False, {'name':"no data"}]
+		print self.RegisterStatus
+		#store the feedback score
+		#self.data_handler.get_feedback(s = self.feedback['satisfaction'], m = self.feedback['motivation'])
+		#wrapp all data to store on data base
+		self.DataWrapper.wrapSessionData()
+		#store on database
+		self.DbManager.save_session_data(self.DataWrapper.wrapped_data)
+		#pipe data from backup files
+		self.pipe_sensor_data()
 
 
 
@@ -126,6 +152,7 @@ class SessionDataWrapper(object):
 		self.file2	      =	open(self.backup_file2, 'w+')	
 		self.events       = []
 		self.wrapped_data = {}
+		self.sensorBuffer = []
 		self.sensorSize   = 0
 
 
@@ -150,9 +177,10 @@ class SessionDataWrapper(object):
                              }
 
 
-
-
-
+	
+	def close_files(self):
+		self.file.close()
+		self.file2.close()
 
 class ProjectHandler(object):
 	def __init__(self):
@@ -232,6 +260,9 @@ class DbHandler(object):
 	        		print "already in database"
 	        		return a
 	        return {}
+
+	def save_session_data(self, data):
+		self.db.sessions.insert_one(data)
 
 	#returns the patients stored in the database
 	def get_all_patients(self):
