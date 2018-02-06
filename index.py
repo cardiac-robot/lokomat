@@ -37,7 +37,6 @@ class Index(object):
 
 
 
-
 class MainMenuPlugin(object):
     def __init__(self):
         #create database client
@@ -75,7 +74,12 @@ class MainMenuPlugin(object):
                                                                                                         } 
                                                                                 }
                                                                   )
-
+        self.ModalityPlugin = ModalityPlugin.ModalityPlugin(   settings = {         'projectHandler': {
+                                                                                                        'db' :      self.DataManager,
+                                                                                                        'paths':    self.ProjectHandler
+                                                                                                        }
+                                                                            }                        
+                                                                 )
         #set signals and connections
         self.set_signals()
         #show GUI
@@ -88,8 +92,10 @@ class MainMenuPlugin(object):
         #connect new Register button with the new register plugin
         self.MainMenuWin.connectNewRegisterButton(self.NewRegisterPlugin.launch_gui)
         #connect to id registerwin logic
-        self.IdRegisterPlugin.connectToOnFound(self.MainTherapyPlugin.launch_gui)
+        self.IdRegisterPlugin.connectToOnFound(self.ModalityWin.launch_gui)
         self.IdRegisterPlugin.connectToNotFound(self.NewRegisterPlugin.launch_gui)
+        #connect to ModalityWin Logic.
+        self.ModalityPlugin.connectToLokomat(self.ModalityPlugin.launch_gui)
 
 
 

@@ -12,6 +12,7 @@ class MainTherapyPlugin(object):
 														'db'   :   None,
 														'paths':   None
 													   }
+									'modality': None
 								  }
 			    ):
 		
@@ -20,7 +21,7 @@ class MainTherapyPlugin(object):
 		#load settings from database
 		self.load_settings()
 		# GUI component
-		self.MainTherapyWin  = MainTherapyWin.MainTherapyWin(project_Handler = self.settings['projectHandler']['paths'])
+		self.MainTherapyWin  = MainTherapyWin.MainTherapyWin(project_Handler = self.settings['projectHandler']['paths'], modalities=self.settings['modalities'])
 		#update display thread
 		self.SensorUpdateThread = SensorUpdateThread(f = self.sensor_update, sample = 1)
 		#create sensor manager

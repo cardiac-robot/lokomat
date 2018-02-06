@@ -14,10 +14,11 @@ class MainTherapyWin(QtGui.QMainWindow):
     onBorg         = QtCore.pyqtSignal()
     onSensorUpdate = QtCore.pyqtSignal()   
     #init function
-    def __init__(self, project_Handler = None):
+    def __init__(self, project_Handler = None, modality=None):
         super(MainTherapyWin,self).__init__()
         #variables
         self.project_Handler = project_Handler
+        self.modalities=modalities
 
         self.dataToDisplay = {
                               'hr':0,
@@ -54,7 +55,7 @@ class MainTherapyWin(QtGui.QMainWindow):
         #setting backgroung image
         self.label_background=QtGui.QLabel(self)
         self.label_background.setGeometry(QtCore.QRect(0,0,self.winsize_h,self.winsize_v))
-        self.label_background.setPixmap(QtGui.QPixmap(self.project_Handler.paths['img'] + "/Interfaz.png"))
+        self.label_background.setPixmap(QtGui.QPixmap("plugins/gui/img/Interfaz.png"))
         self.label_background.setScaledContents(True)
         #Image=QImage("img/Interfaz.png")
         #sImage=Image.scaled(self.winsize_h,self.winsize_v,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
@@ -134,7 +135,7 @@ class MainTherapyWin(QtGui.QMainWindow):
         
         self.start=QtGui.QLabel(self)
         self.start.setGeometry(QtCore.QRect(self.winsize_h*0.87,self.winsize_v*0.35,self.winsize_h*0.055 ,self.winsize_h*0.055))
-        Icon3=QtGui.QPixmap(self.project_Handler.paths['img'] + "/play3.png")
+        Icon3=QtGui.QPixmap("plugins/gui/img/play3.png")
         Icon_resize3= Icon3.scaled(self.winsize_h*0.055 ,self.winsize_h*0.055,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.start.setPixmap(Icon_resize3)
         
@@ -142,7 +143,7 @@ class MainTherapyWin(QtGui.QMainWindow):
         
         self.stop=QtGui.QLabel(self)
         self.stop.setGeometry(QtCore.QRect(self.winsize_h*0.87,self.winsize_v*0.48,self.winsize_h*0.055 ,self.winsize_h*0.055))
-        Icon4=QtGui.QPixmap(self.project_Handler.paths['img'] + "/stop1.png")
+        Icon4=QtGui.QPixmap("plugins/gui/img/stop1.png")
         Icon_resize5= Icon4.scaled(self.winsize_h*0.055 ,self.winsize_h*0.055,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.stop.setPixmap(Icon_resize5)
         
@@ -174,10 +175,54 @@ class MainTherapyWin(QtGui.QMainWindow):
         #
         self.LabelPosture=QtGui.QLabel(self)
         self.LabelPosture.setGeometry(QtCore.QRect(self.winsize_h*0.54,self.winsize_v*0.15,self.winsize_h*0.2 ,self.winsize_h*0.25))
-        self.LabelPosture.setPixmap(QtGui.QPixmap(self.project_Handler.paths['img'] + '/cervical'))
+        self.LabelPosture.setPixmap(QtGui.QPixmap('plugins/gui/img//cervical'))
 
+    #Check modalities status
+
+        if (self.modalities=="BWS"):
+
+            self.treadIncl = {}
+            #Treadmill inclination lcd
+            self.treadIncl['name']=QtGui.QLabel(self)
+            self.treadIncl['name'].setText("Treadmill Inclination")
+            self.treadIncl['name'].setStyleSheet("font-size:18px,Arial")
+            self.treadIncl['name'].setGeometry(QtCore.QRect(self.winsize_h*0.45,self.winsize_v*0.14,self.winsize_h*0.12 ,self.winsize_h*0.1))
+            self.treadIncl['lcd'] = QtGui.QLCDNumber(self)
+            self.treadIncl['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.58,self.winsize_v*0.19,self.winsize_h*0.12 ,self.winsize_h*0.04))
+            
+            #Velocity inclination:
+            self.velocity = {}
+            #yaw angle label
+            self.velocity['name'] = QtGui.QLabel(self)
+            self.velocity['name'].setText("Velocity")
+            self.velocity['name'].setStyleSheet("font-size:18px; Arial")
+            self.velocity['name'].setGeometry(QtCore.QRect(self.winsize_h*0.50,self.winsize_v*0.23,self.winsize_h*0.12 ,self.winsize_h*0.1))
+            self.velocity['lcd'] = QtGui.QLCDNumber(self)
+            self.velocity['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.58,self.winsize_v*0.28,self.winsize_h*0.12 ,self.winsize_h*0.04))
+            
+            #Cadence inclination:
+            self.Cadence = {}
+            #pitch angle label
+            self.Cadence['name'] = QtGui.QLabel(self)
+            self.Cadence['name'].setText("Cadence")
+            self.Cadence['name'].setStyleSheet("font-size:18px; Arial")
+            self.Cadence['name'].setGeometry(QtCore.QRect(self.winsize_h*0.50,self.winsize_v*0.33,self.winsize_h*0.12 ,self.winsize_h*0.1))
+            self.Cadence['lcd'] = QtGui.QLCDNumber(self)
+            self.Cadence['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.58,self.winsize_v*0.37,self.winsize_h*0.12 ,self.winsize_h*0.04))
+            
+            #Step Length:
+            self.stepDisplay = {}
+            #roll angle label
+            self.stepDisplay['name'] = QtGui.QLabel(self)
+            self.stepDisplay['name'].setText("Step Length")
+            self.stepDisplay['name'].setStyleSheet("font-size:18px; Arial")
+            self.stepDisplay['name'].setGeometry(QtCore.QRect(self.winsize_h*0.46,self.winsize_v*0.40,self.winsize_h*0.12 ,self.winsize_h*0.1))
+            self.stepDisplay['lcd'] = QtGui.QLCDNumber(self)
+            self.stepDisplay['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.58,self.winsize_v*0.45,self.winsize_h*0.12 ,self.winsize_h*0.04))
+        
+        self.show() 
         #create borgscale button
-        #self.Borg = BorgButton(self)
+        self.Borg = BorgButton(self)
 
     def set_correctPostureImage(self):
         self.LabelPosture.setPixmap(QtGui.QPixmap(self.project_Handler.paths['img'] + '/Goodposture'))
@@ -303,7 +348,7 @@ class BorgButton(object):
         w = wp
         for i in range(15):
             self.Borg.append(QtGui.QLabel(self.window))
-            Icon2=QtGui.QPixmap(self.project_Handler.paths['img'] + "/l" + str(i))
+            Icon2=QtGui.QPixmap( "plugins/gui/img/l" + str(i))
             Icon_resize= Icon2.scaled(h,w,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
             self.Borg[-1].setPixmap(Icon_resize)
             self.Borg[-1].setGeometry(x,y,h,w)
@@ -340,11 +385,11 @@ class BorgButton(object):
     def unlock_buttons(self):
         print('unlock borg buttons')
 
-#def main():
-    #app=QtGui.QApplication(sys.argv)
-    #GUI=MainTherapyWin()
-    #sys.exit(app.exec_())
-#A=main()
+def main():
+    app=QtGui.QApplication(sys.argv)
+    GUI=MainTherapyWin()
+    sys.exit(app.exec_())
+A=main()
 
 if __name__ == '__main__':
     app=QtGui.QApplication(sys.argv)

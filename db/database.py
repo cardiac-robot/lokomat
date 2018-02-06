@@ -38,6 +38,7 @@ class DataManager(object):
 		for i in a:
 			return	i
 
+
 	#register method, validates the existence of the patient and stores the patient if is new
 	def register(self, name = "nd", age = "nd", gender = "nd", height = "nd", crotch= "nd", id_number = 'nd'):
 		self.person = {"name": name, "gender": gender, "age": age, "height": height, "crotch": crotch,"id_number":id_number, "times": [self.date]}
@@ -271,8 +272,12 @@ class DbHandler(object):
 	#Load complete dataset to the database
 	def update_sensor_reading(self, name, date, sensor_reading):
 		result = self.db.sessions.update({'patient':name, 'date':str(date)},{'$push':{'sensors':sensor_reading}})
+
 		#print result
 		return result
+	
+	def update_modality_settings(self, mode):
+		self.db.settings.update.update({},{ $set : { "modality" : mode }})
 
 def main():
 	
