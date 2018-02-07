@@ -10,11 +10,13 @@ class ModalityWin(QtGui.QMainWindow):
     onBws     = QtCore.pyqtSignal()
 
     def __init__(self,project_Handler=None):
+
         super(ModalityWin,self).__init__()
-        self.init_ui()
         self.project_Handler=project_Handler
+        self.init_ui()
+        #self.project_Handler=project_Handler
         #Signals
-        
+        self.set_signals()
     def init_ui(self):
         #-------------main config---------------
         #Window title
@@ -79,6 +81,7 @@ class ModalityWin(QtGui.QMainWindow):
     def set_signals(self):
         self.controlButtons['bws'].clicked.connect(self.onBws.emit)
         self.controlButtons['lokomat'].clicked.connect(self.onLokomat.emit)
+        
 
 
 

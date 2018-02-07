@@ -59,14 +59,14 @@ class RobotController(object):
 
                                  }):
         
-        self.settings = settings
-        self.ip = self.settings['ip']
-        self.port = self.settings['port']
+        self.settings   = settings
+        self.ip         = self.settings['ip']
+        self.port       = self.settings['port']
         self.useSpanish = self.settings['UseSpanish']
+        self.robotName  = self.settings['name']
 
-        self.session = qi.Session()
-        self.robotName = self.settings['name']
-
+        self.session    = qi.Session()
+        
         self.go_on = True
         
         print('b')
@@ -75,13 +75,23 @@ class RobotController(object):
 
         self.session.connect("tcp://" + self.ip + ":" + str(self.port))
 
-        print('vv')
-
         self.tts = self.session.service("ALTextToSpeech")
         self.setLanguage('Spanish')
         self.animatedSpeechProxy = self.session.service("ALAnimatedSpeech")
         self.motion = self.session.service("ALMotion")
         self.posture = self.session.service("ALRobotPosture")
+        #self.recog = self.session.service("RecognitionService")
+        #self.lokomat  = self.session.service("LokomatBehaviour")
+        self.behavior_mng_service = self.session.service("ALBehaviorManager")
+        names = self.behavior_mng_service.getInstalledBehaviors()
+        print "Behaviors on the robot:"
+        print names
+
+        names = self.behavior_mng_service.getRunningBehaviors()
+        print "Running behaviors:"
+        print names
+
+        
         '''
         self.motion = self.session.service("ALMotion")
         self.motion.wakeUp()
@@ -93,27 +103,40 @@ class RobotController(object):
 
         self.configuration = {"bodyLanguageMode":"contextual"}
 
+    
+    #set language method
     def setLanguage(self, value):
         self.tts.setLanguage(value)
-
+    
+    #set volume method
     def setVolume(self, value):
         self.tts.setVolume(value)
-
+    
+    #say method
     def say(self, textToSay):
         self.tts.say(textToSay)
 
+    #Thread say method threaded
+    def threadSay(self, textToSay):
+        threading.Thread(target = self.say, args = (textToSay,)).start()
 
+
+    #look to the patient 
+    #TODO: change this method, this must be part of posture module
     def lookAtPatient(self): 
         names = ["HeadYaw", "HeadPitch"]
         angleLists = [ 30.0*almath.TO_RAD, -30.0*almath.TO_RAD]
-        timeLists  = [1.0, 1.2]
+        timeLists  = [2.0, 2.0]
         isAbsolute = True
         self.motion.angleInterpolation(names, angleLists, timeLists, isAbsolute)
 
-
+    #limits
+    #TODO: this limits and all memory parameters should be located in a database
     def set_limits(self):
         self.hr = 50
 
+
+    #TODO: sentences shoul be located in a database
     def set_sentences(self):
         self.welcomeSentence = "Hola, \\pau=400\\ mi nombre es " + self.robotName + ". \\pau=500\\ Te estaré acompañando en la sesión. \\pau=500\\ Estoy aquí para cuidar tus signos y ayudarte a mejorar en tu rehabilitación."
         self.sayGoodBye = "Fue un placer acompañarte durante la sessión.\\pau=400\\ Nos vemos la próxima ocasión. "
@@ -125,6 +148,8 @@ class RobotController(object):
 
         self.motivationSentence = ["Puedes hacerlo!","Que bien lo haces!","Te felicito!","Sigue así!"]
 
+
+    #connect to robot method
     def connect_to_robot(self):
 
         try:
@@ -135,6 +160,8 @@ class RobotController(object):
                           "Please check your script arguments. Run with -h option for help.")
             sys.exit(1)
 
+
+    #set routines
     def set_routines(self):
         sayMotivation = functools.partial(self.get_motivation)
         self.sayMotivationTask = qi.PeriodicTask()
@@ -149,9 +176,18 @@ class RobotController(object):
 
     def start_session(self):
         self.motion.wakeUp()
-        self.tts.say(self.welcomeSentence)
-        #self.posture.goToPosture("StandZero", 1.0)
+        #self.tts.say(self.welcomeSentence)
+        #self.animatedSpeechProxy.say(self.welcomeSentence)
         
+        #self.posture.goToPosture("StandZero", 1.0)
+        threading.Thread(target = self.run_b).start()
+        self.animatedSpeechProxy.say(self.welcomeSentence)
+
+
+    def run_b(self):
+        self.behavior_mng_service.runBehavior('lokomatbehaviour-604e1f/behavior_1')
+
+
     def get_borg(self, d):
 
         if d > 11:
@@ -159,23 +195,28 @@ class RobotController(object):
         else:
             self.tts.say(self.borgRecievedSentence)
 
-    def ask_hr_high(self):
-        self.tts.say(self.hrIsUpSentence)
+    
 
-
+    #ROUTINE: predefined activities within an specific period of time
+    #provide motivation a constant period of time
     def get_motivation(self):
         i = random.randint(0, len(self.motivationSentence) - 1)
         
-        self.tts.say(self.motivationSentence[i])
+        self.threadSay(self.motivationSentence[i])
 
-
+    #EVENTS: behaviors or activities that are triggered when an event occured
+    #posture correction for torse event
     def correct_torse_posture(self):
         self.tts.say(self.torsePostureCorrectionSentence)
-
+    #posture correction for head event
     def correct_head_posture(self):
         self.tts.say(self.headPostureCorrectionSentence)
 
+    #ask hr: when heart rate seems to be high the robot asks if everything goes well
+    def ask_hr_high(self):
+        self.tts.say(self.hrIsUpSentence)
 
+    #set_data method: validates data each time it is received 
     def set_data(self, data):
         self.ecg = data['ecg']
         self.angles1 = data['imu1']
@@ -191,9 +232,9 @@ class RobotController(object):
         if float(self.angles1['pitch']) > -70:
             self.correct_head_posture()
          
-    
+    #shutdown method: finishes all processes of the robot
     def shutdown(self):
-        self.tts.say(self.sayGoodBye)
+        self.animatedSpeechProxy.say(self.sayGoodBye)
         if self.motion.robotIsWakeUp():
             self.motion.rest()
 
@@ -202,7 +243,13 @@ class RobotController(object):
 def main():
 
 
-    nao = RobotController(ip = '192.167.0.101', useSpanish = True)
+    nao = RobotController(settings = { 'name'           : "Palin",
+                                   'ip'             : '192.168.0.101',
+                                   'port'           : 9559,
+                                   'UseSpanish'     : True,
+                                   'MotivationTime' : 10000000  #30 seconds
+
+                                 })
     
     
     nao.set_sentences()
@@ -214,9 +261,10 @@ def main():
     nao.start_session()
 
     #nao.correct_head_posture()
+    time.sleep(10)
     nao.set_routines()
     #t.start()
-    time.sleep(25)
+    time.sleep(40)
     #nao.correct_torse_posture()
     nao.stop_routines()
     nao.shutdown()

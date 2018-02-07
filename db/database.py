@@ -277,7 +277,8 @@ class DbHandler(object):
 		return result
 	
 	def update_modality_settings(self, mode):
-		self.db.settings.update.update({},{ $set : { "modality" : mode }})
+		self.db.settings.update({},{ '$set' : { "modality" : mode }})
+
 
 def main():
 	

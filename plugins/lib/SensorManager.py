@@ -30,7 +30,6 @@ class ManagerRx(object):
 						           } 
 				):
 		
-		print(settings)
 
 		self.settings = settings
 

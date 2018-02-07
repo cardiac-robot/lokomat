@@ -11,17 +11,19 @@ class MainTherapyPlugin(object):
 									'projectHandler' : {
 														'db'   :   None,
 														'paths':   None
-													   }
-									'modality': None
+													   },
 								  }
 			    ):
 		
 		# load settings
+
 		self.settings = settings
+
+		print settings['projectHandler']['db'].get_settings()
 		#load settings from database
 		self.load_settings()
 		# GUI component
-		self.MainTherapyWin  = MainTherapyWin.MainTherapyWin(project_Handler = self.settings['projectHandler']['paths'], modalities=self.settings['modalities'])
+		self.MainTherapyWin  = MainTherapyWin.MainTherapyWin(project_Handler = self.settings['projectHandler']['paths'] )
 		#update display thread
 		self.SensorUpdateThread = SensorUpdateThread(f = self.sensor_update, sample = 1)
 		#create sensor manager
@@ -33,7 +35,7 @@ class MainTherapyPlugin(object):
 		if self.settings['sensor']['use']:
 			self.launch_sensors()
 
-		self.set_signals()	
+			
 		
 		#database
 
@@ -47,7 +49,25 @@ class MainTherapyPlugin(object):
 
 	# show GUI 
 	def launch_gui(self):
+		print('Launch gui enter')
+		self.modality_Validation()
+		self.MainTherapyWin.init_ui()
+		self.MainTherapyWin.set_signals()
+		self.set_signals()
 		self.MainTherapyWin.show()
+
+	#modality validation
+	def modality_Validation(self):
+
+		db = self.settings['projectHandler']['db']
+		
+		if  db.DbManager.db.settings.distinct("modality")==[u'bws']:
+			self.MainTherapyWin.modality="bws"
+		else:
+			self.MainTherapyWin.modality="lokomat"
+
+
+
 
 	#Launch robot object
 	def launch_robot(self):

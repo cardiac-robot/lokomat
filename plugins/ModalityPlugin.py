@@ -3,7 +3,7 @@ import db.database as database
 
 
 class ModalityPlugin(object):
-	def __init__(selfsettings = {
+	def __init__(self, settings = {
 									'projectHandler' : {
 														'db'   :   None,
 														'paths':   None
@@ -11,15 +11,17 @@ class ModalityPlugin(object):
 								  }
 				):
 		#load settings
-		self.setting = settings
+		self.settings = settings
 		#create GUI resource
 		self.ModalityWin = ModalityWin.ModalityWin(project_Handler = self.settings['projectHandler']['paths'])
 		#create database resource
 		self.database = settings['projectHandler']['db'].DbManager
+		#print(self.database)
+		self.set_signals()
 
 	def set_signals(self):
-		self.ModalityWin.onBws.connect(self.SetBwsMode)
-		self.ModalityWin.onLokomat.connect(self.SetLokomatMode)
+		self.ModalityWin.onBws.connect(self.setBwsMode)
+		self.ModalityWin.onLokomat.connect(self.setLokomatMode)
 
 	def launch_gui(self):
 		self.ModalityWin.show()
@@ -29,6 +31,9 @@ class ModalityPlugin(object):
 		
 	def setBwsMode(self):
 		self.database.update_modality_settings('bws')
+	
+
+
 	
 
 

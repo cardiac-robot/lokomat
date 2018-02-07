@@ -7,18 +7,18 @@ Created on Wed Oct 25 17:23:31 2017
 """
 
 import threading
-
-import plugins.gui.MainTherapyWin as interface
+import plugins.gui.MainTherapyWin as MainTherapyWin
 import plugins.gui.IDRegisterWin as IdRegisterWin
 import plugins.gui.MainMenuWin as MainMenuWin
 import plugins.gui.NewRegisterWin as NewRegisterWin
-
+import plugins.gui.ModalityWin as ModalityWin
 import db.database as database
 #import lib.Analog_Joystick_rpi as Joy
 #import lib.manager as man
 import plugins.MainTherapyPlugin as MainTherapyPlugin
 import plugins.NewRegisterPlugin as NewRegisterPlugin 
-import plugins.IdRegisterPlugin as IdRegisterPlugin     
+import plugins.IdRegisterPlugin as IdRegisterPlugin  
+import plugins.ModalityPlugin as ModalityPlugin    
 import plugins.lib.SensorManager as Manager       
 import plugins.robotController.controller as controller
 from PyQt4 import QtCore, QtGui
@@ -45,9 +45,12 @@ class MainMenuPlugin(object):
         self.ProjectHandler = database.ProjectHandler()
         #create GUI for main menu
         self.MainMenuWin = MainMenuWin.MainMenuWin(project_Handler = self.ProjectHandler)
-        
+        #self.ModalityWin = ModalityWin.ModalityWin(project_Handler = self.ProjectHandler)
         #Plugins creation
-
+        print self.DataManager
+        print self.DataManager
+        print self.ProjectHandler
+        print self.MainMenuWin
         #create MainTherapyPlugin
         self.MainTherapyPlugin = MainTherapyPlugin.MainTherapyPlugin(settings = {
                                                                                     'projectHandler' : {
@@ -80,6 +83,7 @@ class MainMenuPlugin(object):
                                                                                                         }
                                                                             }                        
                                                                  )
+       
         #set signals and connections
         self.set_signals()
         #show GUI
@@ -88,14 +92,24 @@ class MainMenuPlugin(object):
 
     def set_signals(self):
         #connect start therapy button with start threapy plugin
+        
         self.MainMenuWin.connectStartButton(self.IdRegisterPlugin.launch_gui)
         #connect new Register button with the new register plugin
+        
         self.MainMenuWin.connectNewRegisterButton(self.NewRegisterPlugin.launch_gui)
         #connect to id registerwin logic
-        self.IdRegisterPlugin.connectToOnFound(self.ModalityWin.launch_gui)
+       
+        self.IdRegisterPlugin.connectToOnFound(self.ModalityPlugin.launch_gui)
+       
         self.IdRegisterPlugin.connectToNotFound(self.NewRegisterPlugin.launch_gui)
+        
         #connect to ModalityWin Logic.
-        self.ModalityPlugin.connectToLokomat(self.ModalityPlugin.launch_gui)
+    
+        self.ModalityPlugin.ModalityWin.onLokomat.connect(self.MainTherapyPlugin.launch_gui)
+ 
+        self.ModalityPlugin.ModalityWin.onBws.connect(self.MainTherapyPlugin.launch_gui)
+        
+
 
 
 

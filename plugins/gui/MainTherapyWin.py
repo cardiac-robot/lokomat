@@ -12,27 +12,29 @@ class MainTherapyWin(QtGui.QMainWindow):
     onStart        = QtCore.pyqtSignal()
     onStop         = QtCore.pyqtSignal()
     onBorg         = QtCore.pyqtSignal()
-    onSensorUpdate = QtCore.pyqtSignal()   
+    onSensorUpdate = QtCore.pyqtSignal()  
+
     #init function
-    def __init__(self, project_Handler = None, modality=None):
+    def __init__(self, project_Handler = None):
         super(MainTherapyWin,self).__init__()
         #variables
         self.project_Handler = project_Handler
-        self.modalities=modalities
+        self.modality = None
+        
 
-        self.dataToDisplay = {
-                              'hr':0,
-                              'yaw_t':0,
-                              'pitch_t':0,
-                              'roll_t':0,
-                              'yaw_v':0,
-                              'pitch_v':0,
-                              'roll_v':0
-                             }
+        self.dataToDisplay   = {
+                                'hr':0,
+                                'yaw_t':0,
+                                'pitch_t':0,
+                                'roll_t':0,
+                                'yaw_v':0,
+                                'pitch_v':0,
+                                'roll_v':0
+                               }
         #interface setup
-        self.init_ui()
+        #self.init_ui()
         #set signals
-        self.set_signals()
+        #self.set_signals()
 
 
     def init_ui(self):
@@ -55,7 +57,7 @@ class MainTherapyWin(QtGui.QMainWindow):
         #setting backgroung image
         self.label_background=QtGui.QLabel(self)
         self.label_background.setGeometry(QtCore.QRect(0,0,self.winsize_h,self.winsize_v))
-        self.label_background.setPixmap(QtGui.QPixmap(project_Handler.paths['img']+"/Interfaz.png"))
+        self.label_background.setPixmap(QtGui.QPixmap(self.project_Handler.paths['img'] + "/Interfaz.png"))
         self.label_background.setScaledContents(True)
         #Image=QImage("img/Interfaz.png")
         #sImage=Image.scaled(self.winsize_h,self.winsize_v,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
@@ -135,7 +137,7 @@ class MainTherapyWin(QtGui.QMainWindow):
         
         self.start=QtGui.QLabel(self)
         self.start.setGeometry(QtCore.QRect(self.winsize_h*0.87,self.winsize_v*0.35,self.winsize_h*0.055 ,self.winsize_h*0.055))
-        Icon3=QtGui.QPixmap(project_Handler.paths['img']+"/play3.png")
+        Icon3=QtGui.QPixmap(self.project_Handler.paths['img']+"/play3.png")
         Icon_resize3= Icon3.scaled(self.winsize_h*0.055 ,self.winsize_h*0.055,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.start.setPixmap(Icon_resize3)
         
@@ -143,7 +145,7 @@ class MainTherapyWin(QtGui.QMainWindow):
         
         self.stop=QtGui.QLabel(self)
         self.stop.setGeometry(QtCore.QRect(self.winsize_h*0.87,self.winsize_v*0.48,self.winsize_h*0.055 ,self.winsize_h*0.055))
-        Icon4=QtGui.QPixmap(project_Handler.paths['img']+"/stop1.png")
+        Icon4=QtGui.QPixmap(self.project_Handler.paths['img']+"/stop1.png")
         Icon_resize5= Icon4.scaled(self.winsize_h*0.055 ,self.winsize_h*0.055,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.stop.setPixmap(Icon_resize5)
         
@@ -169,20 +171,22 @@ class MainTherapyWin(QtGui.QMainWindow):
         
         self.BorgDisplay= QtGui.QLCDNumber(self)
         self.BorgDisplay.setGeometry(QtCore.QRect(self.winsize_h*0.18,self.winsize_v*0.52,self.winsize_h*0.055 ,self.winsize_h*0.04))
-
+        print("GUI")
+        print(self.modality)
 
 	#----Posture image label
         #
-        self.LabelPosture=QtGui.QLabel(self)
-        self.LabelPosture.setGeometry(QtCore.QRect(self.winsize_h*0.54,self.winsize_v*0.15,self.winsize_h*0.2 ,self.winsize_h*0.25))
-        self.LabelPosture.setPixmap(QtGui.QPixmap(project_Handler.paths['img']+'/cervical'))
+        #self.LabelPosture=QtGui.QLabel(self)
+        #self.LabelPosture.setGeometry(QtCore.QRect(self.winsize_h*0.54,self.winsize_v*0.15,self.winsize_h*0.2 ,self.winsize_h*0.25))
+        #self.LabelPosture.setPixmap(QtGui.QPixmap(self.project_Handler.paths['img']+'/cervical'))
 
     #Check modalities status
 
-        if (self.modalities=="BWS"):
+        if (self.modality=="bws"):
+            print("aaaaa")
 
             self.treadIncl = {}
-            #Treadmill inclination lcd
+            #Treadmill inclination LCD
             self.treadIncl['name']=QtGui.QLabel(self)
             self.treadIncl['name'].setText("Treadmill Inclination")
             self.treadIncl['name'].setStyleSheet("font-size:18px,Arial")
@@ -220,7 +224,7 @@ class MainTherapyWin(QtGui.QMainWindow):
             self.stepDisplay['lcd'] = QtGui.QLCDNumber(self)
             self.stepDisplay['lcd'].setGeometry(QtCore.QRect(self.winsize_h*0.58,self.winsize_v*0.45,self.winsize_h*0.12 ,self.winsize_h*0.04))
         
-        self.show() 
+        #self.show() 
         #create borgscale button
         self.Borg = BorgButton(self)
 
@@ -318,16 +322,15 @@ class MainTherapyWin(QtGui.QMainWindow):
 
 #Borg Button object
 class BorgButton(object):
-    def __init__(self, window, project_Handler=None):
+    def __init__(self, window):
         self.window = window
         self.cursorStatus = 0
         self.j = None
-        self.project_Handler=project_Handler
         #setting background Label Borgº
 
         self.Labelborg=QtGui.QLabel(self.window)
         self.Labelborg.setGeometry(QtCore.QRect(self.window.winsize_h*0.05,self.window.winsize_v*0.81,self.window.winsize_h*0.7 ,self.window.winsize_h*0.05))
-        Icon2=QtGui.QPixmap(self.project_Handler.paths['img'] + "/borgh")
+        Icon2=QtGui.QPixmap("plugins/gui/img/borgh")
         Icon_resize= Icon2.scaled(self.window.winsize_h*0.7 ,self.window.winsize_h*0.045,QtCore.Qt.KeepAspectRatio, transformMode=QtCore.Qt.SmoothTransformation)
         self.Labelborg.setPixmap(Icon_resize)
         self.Labelborg.setScaledContents(True)
@@ -387,11 +390,11 @@ class BorgButton(object):
     def unlock_buttons(self):
         print('unlock borg buttons')
 
-def main():
-    app=QtGui.QApplication(sys.argv)
-    GUI=MainTherapyWin()
-    sys.exit(app.exec_())
-A=main()
+#def main():
+   #app=QtGui.QApplication(sys.argv)
+    #GUI=MainTherapyWin()
+    #sys.exit(app.exec_())
+#A=main()
 
 if __name__ == '__main__':
     app=QtGui.QApplication(sys.argv)
