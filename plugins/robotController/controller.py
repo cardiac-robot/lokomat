@@ -143,6 +143,7 @@ class RobotController(object):
         self.hrIsUpSentence = 'Parece que estás empezando a estar cansado,\\pau=400\\ todo está bien?'
         self.headPostureCorrectionSentence = "Mejora la posición de tu cabeza"
         self.torsePostureCorrectionSentence = 'Trata de enderezarte,\\pau=400\\ pon la espalda recta'
+        self.askBorgScale = 'Que tan cansado te sientes? \\pau=400\\ responde segun la escala'
         self.borgAlertSentence   =  "Al parecer estás muy cansado,\\pau=400\\ voy a llamar al doctor!."
         self.borgRecievedSentence   = "Gracias"
 
@@ -169,6 +170,13 @@ class RobotController(object):
         self.sayMotivationTask.setUsPeriod(self.settings['MotivationTime'])
         self.sayMotivationTask.start(True)
 
+
+        getBorg = functools.partial(self.get_borg_scale)
+        self.askBorgTask = qi.PeriodicTask()
+        self.askBorgTask.setCallback(getBorg)
+        self.askBorgTask.setUsPeriod(50000000)
+        self.askBorgTask.start(True)
+
     def stop_routines(self):
         self.sayMotivationTask.stop()
 
@@ -180,12 +188,12 @@ class RobotController(object):
         #self.animatedSpeechProxy.say(self.welcomeSentence)
         
         #self.posture.goToPosture("StandZero", 1.0)
-        threading.Thread(target = self.run_b).start()
         self.animatedSpeechProxy.say(self.welcomeSentence)
+        time.sleep(10)
+        self.bad_posture_behavior()
 
 
-    def run_b(self):
-        self.behavior_mng_service.runBehavior('lokomatbehaviour-604e1f/behavior_1')
+    
 
 
     def get_borg(self, d):
@@ -203,6 +211,9 @@ class RobotController(object):
         i = random.randint(0, len(self.motivationSentence) - 1)
         
         self.threadSay(self.motivationSentence[i])
+
+    def get_borg_scale(self):
+        self.threadSay(self.askBorgScale)
 
     #EVENTS: behaviors or activities that are triggered when an event occured
     #posture correction for torse event
@@ -231,6 +242,17 @@ class RobotController(object):
         
         if float(self.angles1['pitch']) > -70:
             self.correct_head_posture()
+
+    #BEHAVIOR
+    #posture correction
+    def bad_posture_behavior(self):
+        threading.Thread(target = self.load_bad_posture_behavior).start()
+        
+
+    def load_bad_posture_behavior(self):
+        self.behavior_mng_service.runBehavior('therapy-behaviors/correct_posture')
+
+
          
     #shutdown method: finishes all processes of the robot
     def shutdown(self):
@@ -242,9 +264,8 @@ class RobotController(object):
 
 def main():
 
-
     nao = RobotController(settings = { 'name'           : "Palin",
-                                   'ip'             : '192.168.0.101',
+                                   'ip'             : '192.168.0.103',
                                    'port'           : 9559,
                                    'UseSpanish'     : True,
                                    'MotivationTime' : 10000000  #30 seconds
