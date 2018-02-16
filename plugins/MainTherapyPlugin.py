@@ -18,7 +18,6 @@ class MainTherapyPlugin(object):
 		# load settings
 
 		self.settings = settings
-
 		print settings['projectHandler']['db'].get_settings()
 		#load settings from database
 		self.load_settings()

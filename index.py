@@ -119,9 +119,9 @@ class MainMenuPlugin(object):
 class LokomatInterface(object):
     
     def __init__(self, settings = {
-                                    'UseSensors': False,
-                                    'UseRobot'  : False,
-                                    'RobotIp'   : "192.168.0.100",
+                                    'UseSensors': True,
+                                    'UseRobot'  : True,
+                                    'RobotIp'   : "192.168.0.101",
                                     'RobotPort' : 9559
                                   }
                                     ):
@@ -178,7 +178,7 @@ class LokomatInterface(object):
         self.ManagerRx  = ManagerTx.ManagerRx(settings = {
                             'joy_port'  : 'COM9',
                             'imu_port'  : 'COM4',
-                            'ecg_port'  : 'COM6',
+                            'ecg_port'  : 'COM3',
                             'joy_sample': 0.2,
                             'imu_sample': 1,
                             'joy_baud'  : 9600,
@@ -189,7 +189,7 @@ class LokomatInterface(object):
         if self.settings['UseSensors']:
             
             # set sensors
-            self.ManagerRx.set_sensors(ecg = False, imu = False)
+            self.ManagerRx.set_sensors(ecg = True, imu = True)
             # threads
             
             #sensor update processes
